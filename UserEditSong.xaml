@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="UI.UserEditSong"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Control.Resources>
+        <Style x:Key="bottomButtons" TargetType="Button">
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Background" Value="Honeydew" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="40"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource bottomButtons}"/>
+
+        <Style x:Key="text" TargetType="TextBlock">
+            <!--<Setter Property="Margin" Value="15"/>-->
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Foreground" Value="GhostWhite" />
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource text}"/>
+
+    </Control.Resources>
+
+    <Grid Background="#575757">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Rate song" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Slider  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Minimum="0" Maximum="5" />
+
+        <TextBlock Text="Add to playlist" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <ComboBox Name="PlaylistDropDown" FontSize="24" Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="4"/>
+
+
+    </Grid>
+</UserControl>
