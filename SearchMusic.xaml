@@ -46,6 +46,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
 
         </Grid.RowDefinitions>
 
@@ -64,7 +65,14 @@
         <ComboBox Name="ArtistDropDown" FontSize="32" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="3"  Margin="10, 10, 0, 10" /> 
         <!--ItemsSource="{Binding Source={StaticResource artist}}" SelectedItem="{Binding Path=Artist}"/>-->
 
-        <Button Name="LoginButton" Click="OnSearchButtonClick" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="5" Grid.RowSpan="6" Margin="60, 20, 60, 40">
+        <TextBlock Text="Release Year: " Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <ComboBox Name="YearDropDown" FontSize="32" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="4"  Margin="10, 10, 0, 10" />
+
+
+        <TextBlock Text="Avg. Rating: " Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <ComboBox Name="RatingDropDown" FontSize="32" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="5"  Margin="10, 10, 0, 10" />
+
+        <Button Name="LoginButton" Click="OnSearchButtonClick" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="6" Grid.RowSpan="7" Margin="60, 20, 0, 20">
             SEARCH
         </Button>
 

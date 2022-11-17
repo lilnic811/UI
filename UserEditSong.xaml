@@ -51,10 +51,10 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Rate song" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Slider  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Minimum="0" Maximum="5" />
+        <Slider Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Minimum="0" Maximum="5" />
 
         <TextBlock Text="Add to playlist" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
-        <ComboBox Name="PlaylistDropDown" FontSize="24" Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="4"/>
+        <ComboBox Name="PlaylistDropDown" FontSize="24" Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="4" />
 
 
     </Grid>
