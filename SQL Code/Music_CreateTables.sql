@@ -1,11 +1,12 @@
 /*
 Object: Drop & Create Tables
-Author: Amy Neeland
+Author: Amy Neeland, Lili Chen
 Script Date: 11/8/2022
 Description: This script drops and creates tables based on logical database model
 */
 
 --Drop tables in reverse order to remove foreign key references first
+DROP TABLE IF EXISTS dbo.SongFeaturedArtists
 DROP TABLE IF EXISTS PlaylistSongs;
 DROP TABLE IF EXISTS Playlists;
 DROP TABLE IF EXISTS UserRatings;
@@ -137,5 +138,19 @@ CREATE TABLE PlaylistSongs
     SongID BIGINT NOT NULL FOREIGN KEY REFERENCES Songs(SongID)
 
     UNIQUE(PlaylistID, SongID)
+);
+GO
+
+
+
+CREATE TABLE dbo.SongFeaturedArtists
+(
+	FeaturedID BIGINT NOT NULL IDENTITY(1, 1)
+	,SongID BIGINT NOT NULL
+	,MusicianID BIGINT NOT NULL
+	,CONSTRAINT [PK_dbo_SongFeaturedArtists_FeaturedID] PRIMARY KEY (FeaturedID)
+	,CONSTRAINT [FK_dbo_Songs_SongID] FOREIGN KEY (SongID) REFERENCES dbo.Songs(SongID)
+	,CONSTRAINT [FK_dbo_Musicians_MusicianID] FOREIGN KEY (MusicianID) REFERENCES dbo.Musicians(MusicianID)
+	,CONSTRAINT [UK_dbo_SongFeaturedArtists_FeaturedID] UNIQUE (SongID, MusicianID)
 );
 GO
