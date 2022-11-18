@@ -27,8 +27,7 @@
 
         <TextBlock Name="HelloText" Text="Hello, Name!" Foreground="White" FontSize="72"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <Button Name="Query_Button" Content="Search" FontSize="40" Grid.Row="2" Grid.Column="1" Margin="10" Click="Query_Button_Click"/>
-        <Button Name="Add_User_Button" Content="Add User" FontSize="40" Grid.Row="2" Grid.Column="3" Margin="10" Click="Add_User_Button_Click"/>
+        <Button Name="Query_Button" Content="Search Database" FontSize="40" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" Click="Query_Button_Click"/>
         <Button Name="Add_Artist_Button" Content="Add Artist" FontSize="40" Grid.Row="3" Grid.Column="2" Margin="10" Click="Add_Artist_Button_Click"/>
         <Button Name="Add_Album_Button" Content="Add Album" FontSize="40" Grid.Row="3" Grid.Column="1" Margin="10" Click="Add_Album_Button_Click"/>
         <Button Name="Add_Genre_Button" Content="Add Genre" FontSize="40" Grid.Row="4" Grid.Column="3" Margin="10" Click="Add_Genre_Button_Click"/>
@@ -36,5 +35,7 @@
         <Button Name="Add_Playlist_Button" Content="Add Playlist" FontSize="40" Grid.Row="4" Grid.Column="1" Margin="10" Click="Add_Playlist_Button_Click"/>
         <Button Name="Add_Provider_Button" Content="Add Provider" FontSize="40" Grid.Row="4" Grid.Column="2" Margin="10" Click="Add_Provider_Button_Click"/>
         <Button Name="Logout_Button" Content="Logout" FontSize="40" Grid.Row="5" Grid.Column="3" Margin="10" Click="Logout_Button_Click"/>
+
+        <Border Name="OverrideBorder" Grid.Column="0" Grid.Row="0" Grid.RowSpan="7" Grid.ColumnSpan="5"/>
     </Grid>
 </UserControl>

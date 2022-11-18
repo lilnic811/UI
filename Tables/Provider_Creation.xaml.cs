@@ -22,8 +22,12 @@ namespace UI.Tables
     /// </summary>
     public partial class Provider_Creation : UserControl
     {
-        public Provider_Creation()
+        UserHomePage baseWindow;
+
+        public Provider_Creation(UserHomePage main)
         {
+            baseWindow = main;
+
             InitializeComponent();
         }
 
@@ -35,7 +39,7 @@ namespace UI.Tables
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            //baseWindow.OverrideBorder.Child = null;
+            baseWindow.OverrideBorder.Child = null;
         }
     }
 }

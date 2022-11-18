@@ -51,7 +51,7 @@
         <TextBlock Text="Email: " Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="40"/>
         <TextBox Name="EmailText" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" FontSize="25"  Margin="10, 10, 0, 10"/>
 
-        <TextBlock Name="invalidAttempt" IsEnabled="False" Text="Invalid Login Credentials" Foreground="Red" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="invalidAttempt" Visibility="Hidden" Text="Invalid Login Credentials" Foreground="Red" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <Button Name="Login_Button" Content="Login" Grid.Row="5" Grid.Column="1" Click="Login_Button_Click"/>
         <Button Name="Crate_Button" Content="Create" Grid.Row="5" Grid.Column="3" Click="Crate_Button_Click"/>

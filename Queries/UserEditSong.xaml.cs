@@ -22,14 +22,16 @@ namespace UI
     /// </summary>
     public partial class UserEditSong : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
+        SearchResults searchWindow;
         int UserID;
         int SongID;
         PlaylistsTableAdapter PT = new PlaylistsTableAdapter();
 
-        public UserEditSong(MainWindow main, int userID, int songID)
+        public UserEditSong(UserHomePage main, SearchResults results, int userID, int songID)
         {
             baseWindow = main;
+            searchWindow = results;
             UserID = userID;
             SongID = songID;
 
@@ -41,7 +43,7 @@ namespace UI
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            baseWindow.OverrideBorder.Child = new SearchMusic(baseWindow, UserID);
+            baseWindow.OverrideBorder.Child = searchWindow;
         }
 
         private void Save_Button_Click(object sender, RoutedEventArgs e)
@@ -62,10 +64,6 @@ namespace UI
             URT.Insert(UserID, SongID, (long?)RateSlider.Value);
 
             //PLS.Rows.Add(new Object[] { 777, playlist.PlaylistID, SongID });
-
-
-
-
         }
     }
 }

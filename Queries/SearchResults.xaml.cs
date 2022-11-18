@@ -23,11 +23,10 @@ namespace UI
     /// </summary>
     public partial class SearchResults : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
         int UserID;
 
-        musicDataSet TA = new musicDataSet();
-        public SearchResults(MainWindow main, int userID, string song, string genre, string musician, string year, string rating)
+        public SearchResults(UserHomePage main, int userID, string song, string genre, string musician, string year, string rating)
         {
             baseWindow = main;
             UserID = userID;
@@ -157,7 +156,7 @@ namespace UI
         //TODO Hook up edit button
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-            //baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, UserID);
+            baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, this, UserID, 7);
         }
     }
 }

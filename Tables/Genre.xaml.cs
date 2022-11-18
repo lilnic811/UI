@@ -21,9 +21,9 @@ namespace UI.Tables
     /// </summary>
     public partial class Genre : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
 
-        public Genre(MainWindow main)
+        public Genre(UserHomePage main)
         {
             baseWindow = main;
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace UI.Tables
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            //baseWindow.OverrideBorder.Child = null;
+            baseWindow.OverrideBorder.Child = null;
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.Tables;
 
 namespace UI
 {
@@ -21,9 +22,9 @@ namespace UI
     public partial class UserHomePage : UserControl
     {
         MainWindow baseWindow;
-        long UserID;
+        int UserID;
 
-        public UserHomePage(MainWindow main, long userID, string name)
+        public UserHomePage(MainWindow main, int userID, string name)
         {
             baseWindow = main;
             UserID = userID;
@@ -35,47 +36,42 @@ namespace UI
 
         private void Query_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new SearchMusic(this, UserID);
         }
 
         private void Add_Artist_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new Musicians_Creation(this);
         }
 
         private void Add_Album_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new Album(this);
         }
 
         private void Add_Genre_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new Genre(this);
         }
 
         private void Add_Song_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new Song_Creation(this);
         }
 
         private void Add_Playlist_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new Playlist_Creation(this, UserID);
         }
 
         private void Add_Provider_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new Provider_Creation(this);
         }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Add_User_Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            baseWindow.OverrideBorder.Child = null;
         }
     }
 }

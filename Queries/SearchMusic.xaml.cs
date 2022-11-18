@@ -22,10 +22,10 @@ namespace UI
     /// </summary>
     public partial class SearchMusic : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
         int UserID;
 
-        public SearchMusic(MainWindow main, int userID)
+        public SearchMusic(UserHomePage main, int userID)
         {
             baseWindow = main;
             UserID = userID;

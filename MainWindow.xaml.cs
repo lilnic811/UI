@@ -27,9 +27,6 @@ namespace UI
         public MainWindow()
         {
             InitializeComponent();
-
-            //OverrideBorder.Child = new SearchMusic(this, 54); // TODO GET USER ID
-            OverrideBorder.Child = new UserEditSong(this, 7, 939);
         }
 
         private void Login_Button_Click(object sender, RoutedEventArgs e)
@@ -38,12 +35,12 @@ namespace UI
             var user = UT.GetData().Where(Q => Q.UserEmail == EmailText.Text && Q.Username == UsernameText.Text);
 
             if (user.Count() == 0)
-                invalidAttempt.IsEnabled = true;
+                invalidAttempt.Visibility = Visibility.Visible;
             else
             {
                 UT.Update(user.Min().Username, user.Min().UserEmail, true, user.Min().UserID, user.Min().Username, user.Min().UserEmail, false);
 
-                OverrideBorder.Child = new UserHomePage(this, user.Min().UserID, user.Min().Username);
+                OverrideBorder.Child = new UserHomePage(this, Convert.ToInt32(user.Min().UserID), user.Min().Username);
             }
         }
 

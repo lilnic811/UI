@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static UI.musicDataSet;
 using UI.musicDataSetTableAdapters;
+using System.Text.RegularExpressions;
 
 namespace UI.Tables
 {
@@ -22,11 +23,11 @@ namespace UI.Tables
     /// </summary>
     public partial class Song_Creation : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
         AlbumsTableAdapter AT = new AlbumsTableAdapter();
         ProvidersTableAdapter PT = new ProvidersTableAdapter();
 
-        public Song_Creation(MainWindow main)
+        public Song_Creation(UserHomePage main)
         {
             baseWindow = main;
             InitializeComponent();
@@ -52,7 +53,13 @@ namespace UI.Tables
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            //baseWindow.OverrideBorder.Child = null;
+            baseWindow.OverrideBorder.Child = null;
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

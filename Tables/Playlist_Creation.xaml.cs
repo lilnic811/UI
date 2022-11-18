@@ -22,10 +22,10 @@ namespace UI.Tables
     /// </summary>
     public partial class Playlist_Creation : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
         int UserID;
 
-        public Playlist_Creation(MainWindow main, int userID)
+        public Playlist_Creation(UserHomePage main, int userID)
         {
             baseWindow = main;
             UserID = userID;
@@ -40,7 +40,7 @@ namespace UI.Tables
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            //baseWindow.OverrideBorder.Child = null;
+            baseWindow.OverrideBorder.Child = null;
         }
     }
 }

@@ -22,9 +22,9 @@ namespace UI.Tables
     /// </summary>
     public partial class Musicians_Creation : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
 
-        public Musicians_Creation(MainWindow main)
+        public Musicians_Creation(UserHomePage main)
         {
             baseWindow = main;
             InitializeComponent();
@@ -35,10 +35,10 @@ namespace UI.Tables
             MusiciansTableAdapter MT = new MusiciansTableAdapter();
             MT.Insert(ArtistText.Text);
         }
-
+        
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            //baseWindow.OverrideBorder.Child = null;
+            baseWindow.OverrideBorder.Child = null;
         }
     }
 }

@@ -22,9 +22,9 @@ namespace UI.Tables
     /// </summary>
     public partial class Album : UserControl
     {
-        MainWindow baseWindow;
+        UserHomePage baseWindow;
 
-        public Album(MainWindow main)
+        public Album(UserHomePage main)
         {
             baseWindow = main;
             InitializeComponent();
@@ -52,7 +52,7 @@ namespace UI.Tables
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            //baseWindow.OverrideBorder.Child = null;
+            baseWindow.OverrideBorder.Child = null;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
