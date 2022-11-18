@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for LoginScreen.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class LoginScreen : UserControl
+    public partial class MainView : UserControl
     {
-        public LoginScreen()
+        public MainView()
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// resets the order
-        /// </summary>
-        /// <param name="sender">CancelOrderButton</param>
-        /// <param name="e">click</param>
-        public void OnLoginButtonClick(object sender, RoutedEventArgs e)
-        {
-            //chain main window view to search // user main
-        }
-
-
     }
 }
