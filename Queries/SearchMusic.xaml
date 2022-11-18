@@ -47,7 +47,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
         </Grid.RowDefinitions>
 
         <!--<Border Name="LoginPanel" Grid.Column ="1" Grid.ColumnSpan="5" Grid.RowSpan="5" Margin="20, 20, 20, 10"/>
@@ -56,21 +55,31 @@
         <!--<local:MenuItemSelectionControl/>-->
 
         <TextBlock Text="Song: " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <TextBox Name="UsernameText" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" FontSize="24"  Margin="10, 10, 0, 10"/>
+        <TextBox Name="SongText" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" FontSize="25"  Margin="10, 10, 0, 10"/>
 
         <TextBlock Text="Genre: " Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <ComboBox Name="GenreDropDown" FontSize="32" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="2"  Margin="10, 10, 0, 10" />
+        <ComboBox Name="GenreDropDown" IsEnabled="True" FontSize="25" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="2"  Margin="10, 10, 0, 10" SelectedIndex="0">
+            <ComboBoxItem Content="Any"/>
+        </ComboBox>
 
         <TextBlock Text="Artist: " Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"/>
-        <ComboBox Name="ArtistDropDown" FontSize="32" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="3"  Margin="10, 10, 0, 10" /> 
+        <TextBox Name="ArtistText" FontSize="25" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="3"  Margin="10, 10, 0, 10" />
         <!--ItemsSource="{Binding Source={StaticResource artist}}" SelectedItem="{Binding Path=Artist}"/>-->
 
         <TextBlock Text="Release Year: " Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <ComboBox Name="YearDropDown" FontSize="32" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="4"  Margin="10, 10, 0, 10" />
+        <TextBox Name="YearText" PreviewTextInput="NumberValidationTextBox" FontSize="25" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="4"  Margin="10, 10, 0, 10"/>
 
 
         <TextBlock Text="Avg. Rating: " Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
-        <ComboBox Name="RatingDropDown" FontSize="32" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="5"  Margin="10, 10, 0, 10" />
+        <ComboBox Name="RatingDropDown" FontSize="25" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="5"  Margin="10, 10, 0, 10" SelectedIndex="0">
+            <ComboBoxItem Content="Any"/>
+            <ComboBoxItem Content="0"/>
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+        </ComboBox>
 
         <Button Name="LoginButton" Click="OnSearchButtonClick" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="6" Grid.RowSpan="7" Margin="60, 20, 0, 20">
             SEARCH

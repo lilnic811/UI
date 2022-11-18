@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.musicDataSetTableAdapters;
+using UI.Tables;
 
 namespace UI
 {
@@ -20,17 +23,33 @@ namespace UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            //OverrideBorder.Child = new SearchMusic(this, 54); // TODO GET USER ID
+            OverrideBorder.Child = new UserEditSong(this, 7, 939);
         }
 
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            UsersTableAdapter UT = new UsersTableAdapter();
+            var user = UT.GetData().Where(Q => Q.UserEmail == EmailText.Text && Q.Username == UsernameText.Text);
 
+            if (user.Count() == 0)
+                invalidAttempt.IsEnabled = true;
+            else
+            {
+                UT.Update(user.Min().Username, user.Min().UserEmail, true, user.Min().UserID, user.Min().Username, user.Min().UserEmail, false);
 
+                OverrideBorder.Child = new UserHomePage(this, user.Min().UserID, user.Min().Username);
+            }
+        }
 
-
-
-
-
+        private void Crate_Button_Click(object sender, RoutedEventArgs e)
+        {
+            OverrideBorder.Child = new User_Creation(this);
+        }
     }
 }

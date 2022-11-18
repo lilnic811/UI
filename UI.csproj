@@ -55,16 +55,48 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SearchMusic.xaml.cs">
+    <Compile Include="musicDataSet.cs">
+      <DependentUpon>musicDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="musicDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>musicDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Queries\SearchMusic.xaml.cs">
       <DependentUpon>SearchMusic.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SearchResults.xaml.cs">
+    <Compile Include="Queries\SearchResults.xaml.cs">
       <DependentUpon>SearchResults.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserEditSong.xaml.cs">
+    <Compile Include="Queries\UserEditSong.xaml.cs">
       <DependentUpon>UserEditSong.xaml</DependentUpon>
     </Compile>
-    <Page Include="LoginScreen.xaml">
+    <Compile Include="Tables\Album.xaml.cs">
+      <DependentUpon>Album.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Genre.xaml.cs">
+      <DependentUpon>Genre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Musicians_Creation.xaml.cs">
+      <DependentUpon>Musicians_Creation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Playlist_Creation.xaml.cs">
+      <DependentUpon>Playlist_Creation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Provider_Creation.xaml.cs">
+      <DependentUpon>Provider_Creation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\Song_Creation.xaml.cs">
+      <DependentUpon>Song_Creation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\User_Creation.xaml.cs">
+      <DependentUpon>User_Creation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserHomePage.xaml.cs">
+      <DependentUpon>UserHomePage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Queries\LoginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,22 +108,54 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LoginScreen.xaml.cs">
+    <Compile Include="Queries\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SearchMusic.xaml">
+    <Page Include="Queries\SearchMusic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SearchResults.xaml">
+    <Page Include="Queries\SearchResults.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserEditSong.xaml">
+    <Page Include="Queries\UserEditSong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\Album.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\Genre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\Musicians_Creation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\Playlist_Creation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\Provider_Creation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\Song_Creation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tables\User_Creation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserHomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,7 +177,19 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="musicDataSet.xsc">
+      <DependentUpon>musicDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="musicDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>musicDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="musicDataSet.xss">
+      <DependentUpon>musicDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -122,5 +198,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

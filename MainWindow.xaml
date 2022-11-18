@@ -23,25 +23,38 @@
 
     <Grid Background="#333333">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="20"/>
+            <ColumnDefinition MaxWidth="50"/>
             <ColumnDefinition/>
+            <ColumnDefinition MaxWidth="50"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition MaxWidth="20"/>
+            <ColumnDefinition MaxWidth="50"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="20"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
+            <RowDefinition />
+            <RowDefinition MaxHeight="20"/>
         </Grid.RowDefinitions>
-
-        <Border Name="MainPanel" Grid.Column ="1" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="20, 20, 20, 10"/>
         <!-- MenuItemSelectionControl placed in border in backing class-->
         <!--<local:MenuItemSelectionControl/>-->
 
+        <TextBlock Text="Login" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
+        <Border Name="OverrideBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+
+        <TextBlock Text="Username: " Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="40"/>
+        <TextBox Name="UsernameText" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" FontSize="25"  Margin="10, 10, 0, 10"/>
+
+        <TextBlock Text="Email: " Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="40"/>
+        <TextBox Name="EmailText" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" FontSize="25"  Margin="10, 10, 0, 10"/>
+
+        <TextBlock Name="invalidAttempt" IsEnabled="False" Text="Invalid Login Credentials" Foreground="Red" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Button Name="Login_Button" Content="Login" Grid.Row="5" Grid.Column="1" Click="Login_Button_Click"/>
+        <Button Name="Crate_Button" Content="Create" Grid.Row="5" Grid.Column="3" Click="Crate_Button_Click"/>
 
     </Grid>
 </Window>

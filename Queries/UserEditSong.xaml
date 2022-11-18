@@ -51,11 +51,13 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Rate song" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Slider Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Minimum="0" Maximum="5" />
+        <Slider Name="RateSlider" Value="0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Minimum="0" Maximum="5"/>
 
         <TextBlock Text="Add to playlist" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
-        <ComboBox Name="PlaylistDropDown" FontSize="24" Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="4" />
+        <ComboBox Name="PlaylistDropDown" IsEnabled="True" FontSize="24" Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="4" />
 
+        <Button Name="Save_Button" Content="Save" Grid.Row="6" Grid.Column="3" Click="Save_Button_Click"/>
+        <Button Name="Back_Button" Content="Back" Grid.Row="6" Grid.Column="8" Click="Back_Button_Click"/>
 
     </Grid>
 </UserControl>
