@@ -5,6 +5,7 @@ Script Date: 11/8/2022
 Description: This script drops and creates tables based on logical database model
 */
 
+
 --Drop tables in reverse order to remove foreign key references first
 DROP TABLE IF EXISTS dbo.SongFeaturedArtists
 DROP TABLE IF EXISTS PlaylistSongs;
@@ -101,7 +102,7 @@ CREATE TABLE Users
     UserID BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
     Username NVARCHAR(140) NOT NULL,
     UserEmail NVARCHAR (255) NOT NULL UNIQUE,
-    IsActive BIT
+    IsActive BIT NOT NULL
 
     UNIQUE (Username, UserEmail)
 );
@@ -110,10 +111,12 @@ GO
 --Creates the UserRatings table, with unique constraint user & song
 CREATE TABLE UserRatings
 (
-   UserRatingID BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
-   UserID BIGINT FOREIGN KEY REFERENCES Users(UserID), 
-   SongID BIGINT FOREIGN KEY REFERENCES Songs(SongID),
-   Rating TINYINT CHECK(Rating BETWEEN 1 AND 5)
+	UserRatingID BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	UserID BIGINT FOREIGN KEY REFERENCES Users(UserID), 
+	SongID BIGINT FOREIGN KEY REFERENCES Songs(SongID),
+	Rating TINYINT CHECK(Rating BETWEEN 1 AND 5),
+	DateAdded DATETIME2 NOT NULL DEFAULT SYSDATETIMEOFFSET(),
+	DateDeleted DATETIME2
 
    UNIQUE (UserID, SongID)
 );
@@ -124,7 +127,7 @@ CREATE TABLE Playlists
 (
     PlaylistID BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),
     PlaylistName NVARCHAR(140) NOT NULL,
-    UserID BIGINT NOT NULL FOREIGN KEY REFERENCES Users(UserID)
+    UserID BIGINT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
 
     UNIQUE (UserID, PlaylistName)
 );

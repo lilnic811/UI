@@ -44,7 +44,7 @@ namespace UI
             }
         }
 
-        private void Crate_Button_Click(object sender, RoutedEventArgs e)
+        private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
             OverrideBorder.Child = new User_Creation(this);
         }

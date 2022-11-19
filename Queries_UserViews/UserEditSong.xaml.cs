@@ -61,7 +61,7 @@ namespace UI
             }
 
             UserRatingsTableAdapter URT = new UserRatingsTableAdapter();
-            URT.Insert(UserID, SongID, (long?)RateSlider.Value);
+            //URT.Insert(UserID, SongID, (long?)RateSlider.Value);
 
             //PLS.Rows.Add(new Object[] { 777, playlist.PlaylistID, SongID });
         }
