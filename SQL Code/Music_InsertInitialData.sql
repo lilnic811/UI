@@ -6,68 +6,109 @@ Description: Populates tables with initial data
 */
 
 --inserts data into the Musicians table
-INSERT Musicians(MusicianName)
+DROP TABLE IF EXISTS #add_musicians
+CREATE TABLE #add_musicians (
+	musician NVARCHAR(200) 
+);
+INSERT INTO #add_musicians(
+	musician
+)
 VALUES
-    (N'50 Cent'),
-    (N'AC/DC'),
-    (N'Aerosmith'),
-    (N'Apocalyptica'),
-    (N'Bad Company'),
-    (N'Blackfoot'),
-    (N'Bob Marley'),
-    (N'Def Leppard'),
-    (N'Disturbed'),
-    (N'Duke Ellington'),
-    (N'Eminem'),
-    (N'Five Finger Death Punch'),
-    (N'Foreigner'),
-    (N'Godsmack'),
-    (N'Goldie'),
-    (N'Guns N'' Roses'),
-    (N'Iron Maiden'),
-    (N'Janet Jackson'),
-    (N'Jay-Z'),
-    (N'Journey'),
-    (N'Kiss'),
-    (N'Lynyrd Skynyrd'),
-    (N'Madonna'),
-    (N'Megadeth'),
-    (N'Merle Haggard'),
-    (N'Metallica'),
-    (N'Miles Davis'),
-    (N'Moby'),
-    (N'Motley Crue'),
-    (N'Pantera'),
-    (N'Patsy Cline'),
-    (N'Queen'),
-    (N'R.E.O. Speedwagon'),
-    (N'Royal Blood'),
-    (N'Shinedown'),
-    (N'Skid Row'),
-    (N'Slaughter'),
-    (N'Suicidal Tendencies'),
-    (N'Ted Nugent'),
-    (N'The Cure'),
-    (N'Theory Of A Deadman'),
-    (N'U2'),
-    (N'Volbeat'),
-    (N'Warrant'),
-    (N'Ziggy Marley'),
-    (N'ZZ Top'),
-    (N'Alicia Keys'),
-    (N'Anne-Marie'),
-    (N'ATEEZ'),
-    (N'John Williams'),
-    (N'Peter Tosh'),
-    (N'Seventeen'),
-    (N'Sia'),
-    (N'Skrillex')
+    (N'50 Cent')
+	,(N'AC/DC')
+	,(N'Aerosmith')
+	,(N'Alicia Keys')
+	,(N'Alvin Joiner')
+	,(N'Anne-Marie')
+	,(N'Apocalyptica')
+	,(N'ATEEZ')
+	,(N'Bad Company')
+	,(N'Bizarre')
+	,(N'Blackfoot')
+	,(N'Bob Marley')
+	,(N'D12')
+	,(N'Dave Lombardo')
+	,(N'Def Leppard')
+	,(N'Dina Rae')
+	,(N'Disturbed')
+	,(N'Dr. Dre')
+	,(N'Duke Ellington')
+	,(N'Eminem')
+	,(N'Five Finger Death Punch')
+	,(N'Foreigner')
+	,(N'Godsmack')
+	,(N'Goldie')
+	,(N'Guns N'' Roses')
+	,(N'Hailie Jade')
+	,(N'Iron Maiden')
+	,(N'Jamie Foxx')
+	,(N'Janet Jackson')
+	,(N'Jay-Z')
+	,(N'John Williams')
+	,(N'Journey')
+	,(N'Kiss')
+	,(N'Lloyd Bands')
+	,(N'Lloyd Banks')
+	,(N'Lynyrd Skynyrd')
+	,(N'Madonna')
+	,(N'Megadeth')
+	,(N'Merle Haggard')
+	,(N'Metallica')
+	,(N'Miles Davis')
+	,(N'Moby')
+	,(N'Motley Crue')
+	,(N'Nate Dogg')
+	,(N'Ne-Yo')
+	,(N'Nina Hagen')
+	,(N'Obie Trice')
+	,(N'Olivia')
+	,(N'Pantera')
+	,(N'Patsy Cline')
+	,(N'Peter Tosh')
+	,(N'Queen')
+	,(N'R. Kelly')
+	,(N'R.E.O. Speedwagon')
+	,(N'RBX')
+	,(N'Royal Blood')
+	,(N'Seventeen')
+	,(N'Shinedown')
+	,(N'Sia')
+	,(N'Skid Row')
+	,(N'Skrillex')
+	,(N'Slaughter')
+	,(N'Snoop Dogg')
+	,(N'Stat Quo')
+	,(N'Sticky Fingaz')
+	,(N'Suicidal Tendencies')
+	,(N'Ted Nugent')
+	,(N'The Cure')
+	,(N'The Game')
+	,(N'Theory Of A Deadman')
+	,(N'Tony Yayo')
+	,(N'U2')
+	,(N'Volbeat')
+	,(N'Warrant')
+	,(N'Young Buck')
+	,(N'Ziggy Marley')
+	,(N'ZZ Top')
 ;
+MERGE dbo.Musicians M
+USING #add_musicians SRC ON SRC.musician = M.MusicianName
+WHEN NOT MATCHED THEN
+	INSERT(MusicianName)
+	VALUES(musician);
+--select * from dbo.Musicians
 GO
 
+
 --inserts data into the Genre table
-INSERT Genre(GenreName)
-VALUES
+DROP TABLE IF EXISTS #add_genre
+CREATE TABLE #add_genre (
+	genre NVARCHAR(200) 
+);
+INSERT INTO #add_genre(
+	genre
+)VALUES
     (N'Rap'),
     (N'Pop/Rock'),
     (N'Reggae'),
@@ -79,11 +120,30 @@ VALUES
     (N'K-Pop'),
     (N'Stage & Screen')
 ;
+MERGE dbo.Genre G
+USING #add_genre SRC ON SRC.genre = G.GenreName
+WHEN NOT MATCHED THEN
+	INSERT(GenreName)
+	VALUES(genre);
+--select * from dbo.genre
 GO
 
+
+
 --inserts data into the Albums table
-INSERT Albums(AlbumName, MusicianID, ReleaseYear, GenreID)
-VALUES
+DROP TABLE IF EXISTS #add_albums
+CREATE TABLE #add_albums (
+	albumName NVARCHAR(250) 
+	,musicianID INT
+	,releaseYear BIGINT
+	,genreID INT
+);
+INSERT INTO #add_albums(
+	albumName
+	,musicianID
+	,releaseYear
+	,genreID
+)VALUES
     (N'Before I Self Destruct',(SELECT MusicianID FROM Musicians WHERE MusicianName = '50 Cent'),2009,(SELECT GenreID FROM Genre WHERE GenreName = 'Rap')),
     (N'Get Rich or Die Tryin''',(SELECT MusicianID FROM Musicians WHERE MusicianName = '50 Cent'),2003,(SELECT GenreID FROM Genre WHERE GenreName = 'Rap')),
     (N'The Massacre',(SELECT MusicianID FROM Musicians WHERE MusicianName = '50 Cent'),2005,(SELECT GenreID FROM Genre WHERE GenreName = 'Rap')),
@@ -281,7 +341,7 @@ VALUES
     (N'Rust In Peace',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),1990,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'So Far, So Good...So What! (2004 Remaster)',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),1988,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'Th1rt3en',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),2011,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
-    (N'The Sick, The Dyingâ€¦ And The Dead!',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),2012,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
+    (N'The Sick, The Dying… And The Dead!',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),2012,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'The System Has Failed',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),2004,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'The World Needs a Hero',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),2001,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'United Abominations',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Megadeth'),2007,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
@@ -309,7 +369,7 @@ VALUES
     (N'Dr. Feelgood',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),1989,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'Generation Swine',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),1997,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'Girls, Girls, Girls',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),1987,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
-    (N'MÃ¶tley CrÃ¼e',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),1994,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
+    (N'Mötley Crüe',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),1994,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'New Tattoo',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),2000,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'Saints Of Los Angeles',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),2008,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
     (N'Shout At the Devil',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Motley Crue'),1983,(SELECT GenreID FROM Genre WHERE GenreName = 'Pop/Rock')),
@@ -419,12 +479,36 @@ VALUES
     (N'_WORLD',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Seventeen'),2022,(SELECT GenreID FROM Genre WHERE GenreName = 'K-Pop')),
     (N'Face the Sun',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Seventeen'),2022,(SELECT GenreID FROM Genre WHERE GenreName = 'K-Pop')),
     (N'TEEN, AGE',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'Seventeen'),2017,(SELECT GenreID FROM Genre WHERE GenreName = 'K-Pop')),
-    (N'Offenbach: Gaite Parisienne; Khachaturian: Gayne Ballet Suite',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'John Williams'),1959,(SELECT GenreID FROM Genre WHERE GenreName = 'Stage & Screen'))
-;
+    (N'Offenbach: Gaite Parisienne; Khachaturian: Gayne Ballet Suite',(SELECT MusicianID FROM Musicians WHERE MusicianName = 'John Williams'),1959,(SELECT GenreID FROM Genre WHERE GenreName = 'Stage & Screen'));
+MERGE dbo.Albums A
+USING #add_albums SRC ON SRC.albumName = A.AlbumName
+	AND SRC.musicianID = A.MusicianID
+WHEN NOT MATCHED THEN
+	INSERT(AlbumName
+			,MusicianID
+			,ReleaseYear
+			,GenreID)
+	VALUES(albumName
+	,musicianID
+	,releaseYear
+	,genreID);
+--SELECT * FROM dbo.Albums 
 GO
 
+
+
 --inserts data into Songs table (Part 1)
-INSERT Songs(SongName, AlbumID, TrackNumber)
+DROP TABLE IF EXISTS #add_songs
+CREATE TABLE #add_songs (
+	songName NVARCHAR(250)
+	,albumID INT
+	,trackNum INT
+);
+INSERT INTO #add_songs(
+	songName
+	,albumID
+	,trackNum
+)
 VALUES
     (N'The Invitation',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Before I Self Destruct' AND MusicianName = '50 Cent'),1),
     (N'Then Days Went By',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Before I Self Destruct' AND MusicianName = '50 Cent'),2),
@@ -526,7 +610,7 @@ VALUES
     (N'Conclusion',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),7),
     (N'Resurrection',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),8),
     (N'Heat',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),9),
-    (N'CortÃ©ge',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),10),
+    (N'Cortége',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),10),
     (N'Pandemonium',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),11),
     (N'Toreador II',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),12),
     (N'Epilogue [Relief]',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Reflections' AND MusicianName = 'Apocalyptica'),13),
@@ -1251,10 +1335,34 @@ VALUES
     (N'Scary Monsters and Nice Sprites',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Scary Monsters and Nice Sprites EP' AND MusicianName = 'Skrillex'),2),
     (N'Kill EVERYBODY (EP Version)',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Scary Monsters and Nice Sprites EP' AND MusicianName = 'Skrillex'),3)
 ;
+
+MERGE dbo.Songs S
+USING #add_songs SRC ON SRC.songName = S.SongName
+	AND SRC.albumID = S.AlbumID
+WHEN NOT MATCHED THEN
+	INSERT(SongName
+			,AlbumID
+			,TrackNumber)
+	VALUES(songName
+			,albumID
+			,trackNum);
+--select * from dbo.songs
 GO
 
+
+
 --inserts data into Songs table (Part 2)
-INSERT Songs(SongName, AlbumID, TrackNumber)
+DROP TABLE IF EXISTS #add_songs
+CREATE TABLE #add_songs (
+	songName NVARCHAR(250)
+	,albumID INT
+	,trackNum INT
+);
+INSERT INTO #add_songs(
+	songName
+	,albumID
+	,trackNum
+)
 VALUES
     (N'Primary',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Faith' AND MusicianName = 'The Cure'),2),
     (N'Other Voices',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Faith' AND MusicianName = 'The Cure'),3),
@@ -1360,7 +1468,7 @@ VALUES
     (N'Stranger in a Strange Land',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'October' AND MusicianName = 'U2'),9),
     (N'Scarlet',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'October' AND MusicianName = 'U2'),10),
     (N'Is That All?',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'October' AND MusicianName = 'U2'),11),
-    (N'DiscothÃ¨que',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Pop' AND MusicianName = 'U2'),1),
+    (N'Discothèque',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Pop' AND MusicianName = 'U2'),1),
     (N'Do You Feel Loved',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Pop' AND MusicianName = 'U2'),2),
     (N'Mofo',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Pop' AND MusicianName = 'U2'),3),
     (N'If God Will Send His Angels',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Pop' AND MusicianName = 'U2'),4),
@@ -1448,10 +1556,31 @@ VALUES
     (N'New Time & Age',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Jahmekya' AND MusicianName = 'Ziggy Marley'),15),
     (N'Generation',(SELECT A.AlbumID FROM Albums A INNER JOIN Musicians M ON M.MusicianID = A.MusicianID WHERE A.AlbumName = 'Jahmekya' AND MusicianName = 'Ziggy Marley'),16)
 ;
+
+MERGE dbo.Songs S
+USING #add_songs SRC ON SRC.songName = S.SongName
+	AND SRC.albumID = S.AlbumID
+WHEN NOT MATCHED THEN
+	INSERT(SongName
+			,AlbumID
+			,TrackNumber)
+	VALUES(songName
+			,albumID
+			,trackNum);
 GO
 
+
+
 --inserts data into Providers table
-INSERT Providers(ProviderName, ProviderURL)
+DROP TABLE IF EXISTS #add_providers
+CREATE TABLE #add_providers (
+	providerName NVARCHAR(250) 
+	,providerURL NVARCHAR(250) 
+)
+INSERT INTO #add_providers(
+	ProviderName
+	,ProviderURL
+)
 VALUES
     (N'Amazon Music',N'https://music.amazon.com/'),
     (N'Apple Music',N'https://music.apple.com/'),
@@ -1459,7 +1588,16 @@ VALUES
     (N'Spotify',N'https://open.spotify.com/'),
     (N'YouTube Music',N'https://music.youtube.com')
 ;
+MERGE dbo.Songs S
+USING #add_providers SRC ON SRC.songName = S.SongName
+	AND SRC.albumID = S.AlbumID
+WHEN NOT MATCHED THEN
+	INSERT(ProviderName
+		,ProviderURL)
+	VALUES(providerName
+		,providerURL);
 GO
+
 
 --inserts data into ProviderSongs table (Part 1) OKAY
 INSERT ProviderSongs(SongID, ProviderID, SongURL)
@@ -2012,7 +2150,7 @@ VALUES
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Stranger in a Strange Land' AND A.AlbumName = 'October' AND M.MusicianName = 'U2' AND S.TrackNumber = 9),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NBMBR0/B001NBMBSO'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Scarlet' AND A.AlbumName = 'October' AND M.MusicianName = 'U2' AND S.TrackNumber = 10),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NBMBR0/B001NBMBSO'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Is That All?' AND A.AlbumName = 'October' AND M.MusicianName = 'U2' AND S.TrackNumber = 11),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NBMBR0/B001NBMBSO'),
-    ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'DiscothÃ¨que' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 1),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NB4UNS/B001NB30C0'),
+    ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Discothèque' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 1),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NB4UNS/B001NB30C0'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Do You Feel Loved' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 2),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NB4UNS/B001NB30C0'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Mofo' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 3),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NB4UNS/B001NB30C0'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'If God Will Send His Angels' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 4),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B001NB4UNS/B001NB30C0'),
@@ -2859,7 +2997,7 @@ VALUES
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Conclusion' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 7),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_ghPPs3GO4aRauvk4d0GLvNsxH&trackAsin=B0B355RSG5'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Resurrection' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 8),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_dBbfCMWq59QWc3g8br3mAlThf&trackAsin=B0B35541HQ'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Heat' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 9),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_j2oFGGRLRcfmF1gp6B6LU223W&trackAsin=B0B3552X8H'),
-    ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'CortÃ©ge' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 10),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_B13IQj1keq12rCOHr9zOKBmUV&trackAsin=B0B353ZM6D'),
+    ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Cortége' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 10),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_B13IQj1keq12rCOHr9zOKBmUV&trackAsin=B0B353ZM6D'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Pandemonium' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 11),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_9zGAvJULY6c4iBTsE0oFDo0mC&trackAsin=B0B357DVJX'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Toreador II' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 12),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_SlS0IdpLaSRANcCupo6WvrR5B&trackAsin=B0B356X9PQ'),
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Epilogue [Relief]' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 13),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B0B35F3J5V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_WpEdvGTFNKvB1aF33ZDO84mnV&trackAsin=B0B354DPVM'),
@@ -2896,6 +3034,7 @@ VALUES
     ((SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Bad Guy' AND A.AlbumName = 'The Marshall Mathers LP 2' AND M.MusicianName = 'Eminem' AND S.TrackNumber = 1),(SELECT ProviderID FROM Providers WHERE ProviderName = 'Amazon Music'),N'https://music.amazon.com/albums/B00GBJ2UMU/B00GBJ2VUQ')
 ;
 GO
+
 
 --inserts data into Users table
 INSERT Users(Username, UserEmail, IsActive)
@@ -3001,6 +3140,7 @@ VALUES
     (N'AlanMann',N'rutrum@outlook.edu',1)
 ;
 GO
+
 
 --inserts data into UserRatings table (Part 1)
 INSERT UserRatings(UserID, SongID, Rating)
@@ -3302,7 +3442,7 @@ VALUES
     ((SELECT UserID FROM Users WHERE UserName = 'PhillipRodriguez'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'I Threw a Brick Through a Window' AND A.AlbumName = 'October' AND M.MusicianName = 'U2' AND S.TrackNumber = 3),5),
     ((SELECT UserID FROM Users WHERE UserName = 'DonovanGuerrero'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Rejoice' AND A.AlbumName = 'October' AND M.MusicianName = 'U2' AND S.TrackNumber = 4),5),
     ((SELECT UserID FROM Users WHERE UserName = 'WinterBarker'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Stranger in a Strange Land' AND A.AlbumName = 'October' AND M.MusicianName = 'U2' AND S.TrackNumber = 9),4),
-    ((SELECT UserID FROM Users WHERE UserName = 'AnikaBurke'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'DiscothÃ¨que' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 1),2),
+    ((SELECT UserID FROM Users WHERE UserName = 'AnikaBurke'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Discothèque' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 1),2),
     ((SELECT UserID FROM Users WHERE UserName = 'EvangelineCash'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Mofo' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 3),4),
     ((SELECT UserID FROM Users WHERE UserName = 'SybillHooper'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'If God Will Send His Angels' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 4),1),
     ((SELECT UserID FROM Users WHERE UserName = 'HermioneHatfield'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Wake up Dead Man' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 12),5),
@@ -3531,7 +3671,7 @@ VALUES
     ((SELECT UserID FROM Users WHERE UserName = 'SeanGibbs'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Off That' AND A.AlbumName = 'The Blueprint 3' AND M.MusicianName = 'Jay-Z' AND S.TrackNumber = 8),4),
     ((SELECT UserID FROM Users WHERE UserName = 'SeanGibbs'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Papa Don''t Preach' AND A.AlbumName = 'True Blue' AND M.MusicianName = 'Madonna' AND S.TrackNumber = 1),4),
     ((SELECT UserID FROM Users WHERE UserName = 'SybilCleveland'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Hate' AND A.AlbumName = 'The Blueprint 3' AND M.MusicianName = 'Jay-Z' AND S.TrackNumber = 12),4),
-    ((SELECT UserID FROM Users WHERE UserName = 'SybilCleveland'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'CortÃ©ge' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 10),4),
+    ((SELECT UserID FROM Users WHERE UserName = 'SybilCleveland'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Cortége' AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica' AND S.TrackNumber = 10),4),
     ((SELECT UserID FROM Users WHERE UserName = 'SybilCleveland'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Interlude: T.V.' AND A.AlbumName = 'Rhythm Nation 1814' AND M.MusicianName = 'Janet Jackson' AND S.TrackNumber = 3),4),
     ((SELECT UserID FROM Users WHERE UserName = 'SybilCleveland'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'All for You' AND A.AlbumName = 'All for You' AND M.MusicianName = 'Janet Jackson' AND S.TrackNumber = 3),4),
     ((SELECT UserID FROM Users WHERE UserName = 'SybilCleveland'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Three' AND A.AlbumName = 'Seventeen Seconds' AND M.MusicianName = 'The Cure' AND S.TrackNumber = 5),2),
@@ -3752,7 +3892,7 @@ VALUES
     ((SELECT UserID FROM Users WHERE UserName = 'GarethBarrera'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Who You Wit II' AND A.AlbumName = 'In My Lifetime, Vol. 1' AND M.MusicianName = 'Jay-Z' AND S.TrackNumber = 9),3),
     ((SELECT UserID FROM Users WHERE UserName = 'GarethBarrera'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Encore' AND A.AlbumName = 'The Black Album' AND M.MusicianName = 'Jay-Z' AND S.TrackNumber = 4),4),
     ((SELECT UserID FROM Users WHERE UserName = 'GarethBarrera'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'The Thing That Should Not Be' AND A.AlbumName = 'Master of Puppets' AND M.MusicianName = 'Metallica' AND S.TrackNumber = 3),4),
-    ((SELECT UserID FROM Users WHERE UserName = 'GarethBarrera'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'DiscothÃ¨que' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 1),4),
+    ((SELECT UserID FROM Users WHERE UserName = 'GarethBarrera'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Discothèque' AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2' AND S.TrackNumber = 1),4),
     ((SELECT UserID FROM Users WHERE UserName = 'GarethBarrera'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Half as Much' AND A.AlbumName = 'Sentimentally Yours' AND M.MusicianName = 'Patsy Cline' AND S.TrackNumber = 10),4),
     ((SELECT UserID FROM Users WHERE UserName = 'SybillHooper'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Secrets' AND A.AlbumName = 'Seventeen Seconds' AND M.MusicianName = 'The Cure' AND S.TrackNumber = 3),3),
     ((SELECT UserID FROM Users WHERE UserName = 'SybillHooper'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Silver and Gold' AND A.AlbumName = 'Rattle and Hum' AND M.MusicianName = 'U2' AND S.TrackNumber = 8),3),
@@ -3974,6 +4114,8 @@ VALUES
 ;
 GO
 
+
+
 --inserts data into Playlists table
 INSERT Playlists(PlaylistName, UserID)
 VALUES
@@ -4166,6 +4308,7 @@ VALUES
     (N'pumped-up',(SELECT UserID FROM Users WHERE Username = 'AlanMann'))
 ;
 GO
+
 
 --inserts data into PlaylistSongs table
 INSERT PlaylistSongs(PlaylistID,SongID)
@@ -4365,7 +4508,7 @@ VALUES
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'ConanSims' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'You' AND S.TrackNumber = 4 AND A.AlbumName = 'Animal Rights' AND M.MusicianName = 'Moby')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'ConanSims' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'That''s When I Reach for My Revolver' AND S.TrackNumber = 10 AND A.AlbumName = 'Animal Rights' AND M.MusicianName = 'Moby')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'ConanSims' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Half as Much' AND S.TrackNumber = 10 AND A.AlbumName = 'Sentimentally Yours' AND M.MusicianName = 'Patsy Cline')),
-    ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'ConanSims' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'DiscothÃ¨que' AND S.TrackNumber = 1 AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2'))
+    ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'ConanSims' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Discothèque' AND S.TrackNumber = 1 AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2'))
 ;
 GO 
 
@@ -4407,7 +4550,7 @@ VALUES
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Brain Damage' AND S.TrackNumber = 4 AND A.AlbumName = 'The Slim Shady LP' AND M.MusicianName = 'Eminem')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Don''t Mess up This Good Thing' AND S.TrackNumber = 5 AND A.AlbumName = 'Janet Jackson' AND M.MusicianName = 'Janet Jackson')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Sad But True' AND S.TrackNumber = 2 AND A.AlbumName = 'Metallica' AND M.MusicianName = 'Metallica')),
-    ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'DiscothÃ¨que' AND S.TrackNumber = 1 AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2')),
+    ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'naptime'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Discothèque' AND S.TrackNumber = 1 AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'sleep'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Cohkka' AND S.TrackNumber = 6 AND A.AlbumName = 'Reflections' AND M.MusicianName = 'Apocalyptica')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'sleep'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Perdido' AND S.TrackNumber = 5 AND A.AlbumName = 'Ellington Uptown' AND M.MusicianName = 'Duke Ellington')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'CiaranBender' AND P.PlaylistName = 'sleep'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Love and My Best Friend' AND S.TrackNumber = 4 AND A.AlbumName = 'Janet Jackson' AND M.MusicianName = 'Janet Jackson')),
@@ -4720,7 +4863,7 @@ VALUES
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'roadtrip'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'That''s the Way Love Goes' AND S.TrackNumber = 2 AND A.AlbumName = 'Janet.' AND M.MusicianName = 'Janet Jackson')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'roadtrip'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'New Agenda' AND S.TrackNumber = 15 AND A.AlbumName = 'Janet.' AND M.MusicianName = 'Janet Jackson')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'roadtrip'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Interlude' AND S.TrackNumber = 10 AND A.AlbumName = 'The Black Album' AND M.MusicianName = 'Jay-Z')),
-    ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'roadtrip'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'DiscothÃ¨que' AND S.TrackNumber = 1 AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2')),
+    ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'roadtrip'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Discothèque' AND S.TrackNumber = 1 AND A.AlbumName = 'Pop' AND M.MusicianName = 'U2')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'sleep'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Creeping Death' AND S.TrackNumber = 6 AND A.AlbumName = 'Plays Metallica by Four Cellos' AND M.MusicianName = 'Apocalyptica')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'sleep'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'A Star Is Born' AND S.TrackNumber = 9 AND A.AlbumName = 'The Blueprint 3' AND M.MusicianName = 'Jay-Z')),
     ((SELECT PlaylistID FROM Playlists AS P INNER JOIN Users AS U ON U.UserID = P.UserID WHERE U.Username = 'AbigailOneal' AND P.PlaylistName = 'sleep'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Cherish' AND S.TrackNumber = 6 AND A.AlbumName = 'Erotica' AND M.MusicianName = 'Madonna')),
@@ -4895,94 +5038,14 @@ VALUES
 ;
 GO
 
-/*--------------UPSERT MUSICIANS-------------*/
-DROP TABLE IF EXISTS #add_musicians
-CREATE TABLE #add_musicians (
-	musician NVARCHAR(200) 
-)
-INSERT INTO #add_musicians(
-	musician
-)
-VALUES('50 Cent')
-	,('Aerosmith')
-	,('Alicia Keys')
-	,('Alvin Joiner')
-	,('Anne-Marie')
-	,('Apocalyptica')
-	,('ATEEZ')
-	,('Bizarre')
-	,('Bob Marley')
-	,('D12')
-	,('Dave Lombardo')
-	,('Dina Rae')
-	,('Dr. Dre')
-	,('Duke Ellington')
-	,('Eminem')
-	,('Goldie')
-	,('Hailie Jade')
-	,('Jamie Foxx')
-	,('Janet Jackson')
-	,('Jay-Z')
-	,('John Williams')
-	,('Lloyd Bands')
-	,('Lloyd Banks')
-	,('Madonna')
-	,('Merle Haggard')
-	,('Metallica')
-	,('Miles Davis')
-	,('Moby')
-	,('Nate Dogg')
-	,('Ne-Yo')
-	,('Nina Hagen')
-	,('Obie Trice')
-	,('Olivia')
-	,('Patsy Cline')
-	,('Peter Tosh')
-	,('Queen')
-	,('R. Kelly')
-	,('RBX')
-	,('Seventeen')
-	,('Sia')
-	,('Skrillex')
-	,('Snoop Dogg')
-	,('Stat Quo')
-	,('Sticky Fingaz')
-	,('The Cure')
-	,('The Game')
-	,('Tony Yayo')
-	,('U2')
-	,('Young Buck')
-	,('Ziggy Marley')
---SELECT * FROM #add_music
-MERGE dbo.Musicians M
-USING #add_musicians SRC ON SRC.musician = M.MusicianName
-WHEN NOT MATCHED THEN
-	INSERT(MusicianName)
-	VALUES(musician);
---select * from dbo.musicians
 
 
-
-
-
-
-DROP TABLE IF EXISTS dbo.SongFeaturedArtists
-CREATE TABLE dbo.SongFeaturedArtists
-(
-	FeaturedID BIGINT NOT NULL IDENTITY(1, 1)
-	,SongID BIGINT NOT NULL
-	,MusicianID BIGINT NOT NULL
-	,CONSTRAINT [PK_dbo_SongFeaturedArtists_FeaturedID] PRIMARY KEY (FeaturedID)
-	,CONSTRAINT [FK_dbo_Songs_SongID] FOREIGN KEY (SongID) REFERENCES dbo.Songs(SongID)
-	,CONSTRAINT [FK_dbo_Musicians_MusicianID] FOREIGN KEY (MusicianID) REFERENCES dbo.Musicians(MusicianID)
-	,CONSTRAINT [UK_dbo_SongFeaturedArtists_FeaturedID] UNIQUE (SongID, MusicianID)
-);
 
 DROP TABLE IF EXISTS #add_features
 CREATE TABLE #add_features (
 	songID BIGINT
 	,musicianID BIGINT
-)
+);
 INSERT INTO #add_features(
 	songID
 	,musicianID
@@ -5016,7 +5079,7 @@ VALUES(
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Apocalyptica' AND A.AlbumName = 'Reflections' AND S.TrackNumber = 2 AND S.SongName = 'No Education'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Dave Lombardo'))
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Apocalyptica' AND A.AlbumName = 'Reflections' AND S.TrackNumber = 4 AND S.SongName = 'Somewhere Around Nothing'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Dave Lombardo'))
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Apocalyptica' AND A.AlbumName = 'Reflections' AND S.TrackNumber = 8 AND S.SongName = 'Resurrection'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Dave Lombardo'))
-	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Apocalyptica' AND A.AlbumName = 'Reflections' AND S.TrackNumber = 10 AND S.SongName = 'CortÃ©ge'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Dave Lombardo'))
+	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Apocalyptica' AND A.AlbumName = 'Reflections' AND S.TrackNumber = 10 AND S.SongName = 'Cortége'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Dave Lombardo'))
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Apocalyptica' AND A.AlbumName = 'Reflections' AND S.TrackNumber = 15 AND S.SongName = 'Faraway, Vol.2 (Extended Version)'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Nina Hagen'))
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'The Marshall Mathers LP' AND S.TrackNumber = 9 AND S.SongName = 'Remember Me?'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'RBX'))
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'The Marshall Mathers LP' AND S.TrackNumber = 9 AND S.SongName = 'Remember Me?'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Sticky Fingaz'))
@@ -5038,8 +5101,8 @@ VALUES(
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'Encore' AND S.TrackNumber = 15 AND S.SongName = 'Spend Some Time'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Obie Trice'))
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'Encore' AND S.TrackNumber = 15 AND S.SongName = 'Spend Some Time'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = '50 Cent'))
 	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'Encore' AND S.TrackNumber = 18 AND S.SongName = 'One Shot 2 Shot'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'D12'))
-,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'Encore' AND S.TrackNumber = 20 AND S.SongName = 'Encore/Curtains Down'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Dr. Dre'))
-,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'Encore' AND S.TrackNumber = 20 AND S.SongName = 'Encore/Curtains Down'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = '50 Cent'))
+	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'Encore' AND S.TrackNumber = 20 AND S.SongName = 'Encore/Curtains Down'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = 'Dr. Dre'))
+	,((SELECT S.SongID FROM dbo.Songs S INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID WHERE M.MusicianName = 'Eminem' AND A.AlbumName = 'Encore' AND S.TrackNumber = 20 AND S.SongName = 'Encore/Curtains Down'), (SELECT M.MusicianID FROM dbo.Musicians M WHERE M.MusicianName = '50 Cent'))
 --SELECT * FROM #add_features
 
 MERGE dbo.SongFeaturedArtists S
@@ -5052,3 +5115,155 @@ WHEN NOT MATCHED THEN
 			,musicianID);
 
 --select * from dbo.SongFeaturedArtists
+
+
+
+
+
+
+
+
+
+-- ADD TEST USER for better quality presenting and example runs
+IF NOT EXISTS (SELECT 1 FROM dbo.Users U WHERE U.Username = 'KohnJeller' AND U.UserEmail = 'CoolGuy@ksu.edu')
+BEGIN
+	INSERT INTO dbo.Users(
+		Username
+		,UserEmail
+		,IsActive)
+	VALUES('KohnJeller'
+			,'CoolGuy@ksu.edu'
+			,1)
+
+	INSERT INTO dbo.Playlists(
+		PlaylistName
+		,UserID)
+	VALUES('My favorite songs', (SELECT U.UserID FROM dbo.Users U WHERE U.Username = 'KohnJeller' AND U.UserEmail = 'CoolGuy@ksu.edu'))
+		, ('All ATEEZ',  (SELECT U.UserID FROM dbo.Users U WHERE U.Username = 'KohnJeller' AND U.UserEmail = 'CoolGuy@ksu.edu'))
+
+
+	DECLARE @CoolGuy NVARCHAR(100) = (SELECT U.UserID FROM dbo.Users U WHERE U.Username = 'KohnJeller' AND U.UserEmail = 'KohnJeller@ksu.edu')
+	--inserts song data into the test individuals playlists
+	DROP TABLE IF EXISTS #add_TestPlaylistSongs
+	CREATE TABLE #add_TestPlaylistSongs (
+		playlistID BIGINT
+		,songID BIGINT
+	);
+	INSERT INTO #add_TestPlaylistSongs(
+		playlistID
+		,songID
+	)
+	VALUES((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Skrillex' AND S.SongName = 'Right In'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Skrillex' AND S.SongName = 'Right on Time'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Skrillex' AND S.SongName = 'Scary Monsters and Nice Sprites'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Seventeen' AND S.SongName = 'Lilili Yabbay'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Seventeen' AND S.SongName = 'BRING IT'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Queen' AND S.SongName = 'Bohemian Rhapsody'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Metallica' AND S.SongName = 'Enter Sandman'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Metallica' AND S.SongName = 'Eye of the Beholder'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Metallica' AND S.SongName = 'Master of Puppets'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Madonna' AND S.SongName = 'Vogue'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Madonna' AND S.SongName = 'Material Girl'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Janet Jackson' AND S.SongName = 'Nasty'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Eminem' AND S.SongName = 'Rap God'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Eminem' AND S.SongName = 'Without Me'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Eminem' AND S.SongName = 'The Real Slim Shady'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Eminem' AND S.SongName = 'My Name Is'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Pirate King (Overload Mix)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'HALA HALA (Traditional Treatment Mix)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Aerosmith' AND S.SongName = 'Dream On'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'My favorite songs' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'Anne-Marie' AND S.SongName = 'PSYCHO'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Answer'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Aurora (Japanese Ver.)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'HALA HALA (Traditional Treatment Mix)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Hearts Awakened, Live Alive (Expression Revisited)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Horizon'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Illusion (Chillin'' with BUDDY Mix)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Intro: Long Journey'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Long Journey (Outro)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'My Way'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Pirate King'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Pirate King (Overload Mix)'))
+		, ((SELECT P.PlaylistID FROM dbo.Playlists P WHERE P.PlaylistName = 'All ATEEZ' AND P.UserID = @KohnJeller), (SELECT S.SongID FROM dbo.Songs S
+						INNER JOIN dbo.Albums A ON A.AlbumID = S.AlbumID INNER JOIN dbo.Musicians M ON M.MusicianID = A.MusicianID
+					WHERE M.MusicianName = 'ATEEZ' AND S.SongName = 'Precious'))
+	MERGE dbo.PlaylistSongs PS
+	USING #add_TestPlaylistSongs SRC ON SRC.PlaylistID = PS.PlaylistID
+		AND SRC.songID = PS.SongID
+	WHEN NOT MATCHED THEN
+		INSERT(PlaylistID
+			, SongID)
+		VALUES(playlistID
+			, songID);
+	SELECT  * FROM dbo.PlaylistSongs
+END;
+
+UPDATE dbo.Users
+SET Username = 'Admin'
+,UserEmail = 'Admin'
+WHERE UserID = 1
+--SELECT * FROM dbo.Users
+
+--SELECT * FROM dbo.playlistsongs

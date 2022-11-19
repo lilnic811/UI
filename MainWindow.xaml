@@ -13,7 +13,7 @@
             <Setter Property="Background" Value="Honeydew" />
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="40"/>
+                    <Setter Property="CornerRadius" Value="30"/>
                 </Style>
             </Style.Resources>
         </Style>
@@ -34,14 +34,15 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition MaxHeight="20"/>
+            <RowDefinition MaxHeight="20"/>
             <RowDefinition />
             <RowDefinition MaxHeight="20"/>
         </Grid.RowDefinitions>
         <!-- MenuItemSelectionControl placed in border in backing class-->
         <!--<local:MenuItemSelectionControl/>-->
 
-        <TextBlock Text="Login" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Text="MMDb Login" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
         
 
@@ -53,8 +54,8 @@
 
         <TextBlock Name="invalidAttempt" Visibility="Hidden" Text="Invalid Login Credentials" Foreground="Red" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <Button Name="Login_Button" Content="Login" Grid.Row="5" Grid.Column="1" Click="Login_Button_Click"/>
-        <Button Name="Crate_Button" Content="Create" Grid.Row="5" Grid.Column="3" Click="Crate_Button_Click"/>
+        <Button Name="Login_Button" Content="Login" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" Click="Login_Button_Click"/>
+        <Button Name="Create_Button" Content="Create" Grid.Row="5" Grid.RowSpan="2" Grid.Column="3" Click="Create_Button_Click"/>
 
         <Border Name="OverrideBorder" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="5"/>
     </Grid>

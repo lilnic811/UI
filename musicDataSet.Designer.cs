@@ -8595,7 +8595,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<int> Original_Rating) {
+        public virtual int Delete(long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<byte> Original_Rating) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_UserRatingID));
             if ((Original_UserID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -8615,7 +8615,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
             }
             if ((Original_Rating.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_Rating.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((byte)(Original_Rating.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
@@ -8641,7 +8641,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<long> Rating) {
+        public virtual int Insert(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<byte> Rating) {
             if ((UserID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((long)(UserID.Value));
             }
@@ -8655,7 +8655,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((Rating.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((long)(Rating.Value));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(Rating.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -8680,7 +8680,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<int> Rating, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<int> Original_Rating, long UserRatingID) {
+        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<byte> Rating, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<byte> Original_Rating, long UserRatingID) {
             if ((UserID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(UserID.Value));
             }
@@ -8694,7 +8694,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((Rating.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((long)(Rating.Value));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(Rating.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -8718,7 +8718,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
             }
             if ((Original_Rating.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((long)(Original_Rating.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(Original_Rating.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
@@ -8745,7 +8745,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<int> Rating, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<int> Original_Rating) {
+        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<byte> Rating, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<byte> Original_Rating) {
             return this.Update(UserID, SongID, Rating, Original_UserRatingID, Original_UserID, Original_SongID, Original_Rating, Original_UserRatingID);
         }
     }
