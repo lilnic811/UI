@@ -23,10 +23,10 @@ namespace UI
     /// </summary>
     public partial class SearchResults : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
         int UserID;
 
-        public SearchResults(UserHomePage main, int userID, string song, string genre, string musician, string year, string rating)
+        public SearchResults(AdminHomePage main, int userID, string song, string genre, string musician, string year, string rating)
         {
             baseWindow = main;
             UserID = userID;
@@ -61,13 +61,12 @@ namespace UI
             else
                 albumsList = AT.GetData().Where(Q => Q.ReleaseYear == Int32.Parse(year));
 
-            int asf = Int32.Parse(rating);
             UserRatingsTableAdapter RT = new UserRatingsTableAdapter();
             EnumerableRowCollection<musicDataSet.UserRatingsRow> ratingsList;
             if (rating.Equals("Any"))
                 ratingsList = RT.GetData().Where(Q => true);
             else
-                ratingsList = RT.GetData().Where(Q => Q.Rating == asf);
+                ratingsList = RT.GetData().Where(Q => Q.Rating == Int32.Parse(rating) && Q.UserID == UserID);
 
 
             //var asdfs =
@@ -136,14 +135,13 @@ namespace UI
                 where q.MusicianID == m.MusicianID
                 select new
                 {
-                    q.SongName,
-                    q.Rating,
-                    q.AlbumName,
-                    q.ReleaseYear,
-                    q.GenreName,
-                    m.MusicianName
+                    SongName = q.SongName,
+                    Rating = q.Rating,
+                    AlbumName = q.AlbumName,
+                    ReleaseYear = q.ReleaseYear,
+                    GenreName = q.GenreName,
+                    MusicianName = m.MusicianName
                 };
-
 
             Resutls_Table.ItemsSource = temp4;
         }

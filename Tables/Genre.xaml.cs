@@ -21,9 +21,9 @@ namespace UI.Tables
     /// </summary>
     public partial class Genre : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
 
-        public Genre(UserHomePage main)
+        public Genre(AdminHomePage main)
         {
             baseWindow = main;
             InitializeComponent();

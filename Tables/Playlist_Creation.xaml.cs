@@ -22,10 +22,10 @@ namespace UI.Tables
     /// </summary>
     public partial class Playlist_Creation : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
         int UserID;
 
-        public Playlist_Creation(UserHomePage main, int userID)
+        public Playlist_Creation(AdminHomePage main, int userID)
         {
             baseWindow = main;
             UserID = userID;

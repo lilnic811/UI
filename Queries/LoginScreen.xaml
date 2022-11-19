@@ -28,7 +28,7 @@
 
     </Control.Resources>
 
-    <Grid>
+    <Grid Background="#333333">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

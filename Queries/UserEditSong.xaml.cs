@@ -22,13 +22,13 @@ namespace UI
     /// </summary>
     public partial class UserEditSong : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
         SearchResults searchWindow;
         int UserID;
         int SongID;
         PlaylistsTableAdapter PT = new PlaylistsTableAdapter();
 
-        public UserEditSong(UserHomePage main, SearchResults results, int userID, int songID)
+        public UserEditSong(AdminHomePage main, SearchResults results, int userID, int songID)
         {
             baseWindow = main;
             searchWindow = results;

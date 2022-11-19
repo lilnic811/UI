@@ -22,9 +22,9 @@ namespace UI.Tables
     /// </summary>
     public partial class Provider_Creation : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
 
-        public Provider_Creation(UserHomePage main)
+        public Provider_Creation(AdminHomePage main)
         {
             baseWindow = main;
 

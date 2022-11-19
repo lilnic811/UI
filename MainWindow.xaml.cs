@@ -38,9 +38,15 @@ namespace UI
                 invalidAttempt.Visibility = Visibility.Visible;
             else
             {
-                UT.Update(user.Min().Username, user.Min().UserEmail, true, user.Min().UserID, user.Min().Username, user.Min().UserEmail, false);
+                var min = user.Min();
+                UT.Update(min.Username, min.UserEmail, true, min.UserID, min.Username, min.UserEmail, min.IsActive);
 
-                OverrideBorder.Child = new UserHomePage(this, Convert.ToInt32(user.Min().UserID), user.Min().Username);
+                UsernameText.Text = "";
+                EmailText.Text = "";
+
+                if (min.Username.Equals("Admin") && min.UserEmail.Equals("Admin") && min.UserID == 0)
+                    Console.WriteLine("asdf");
+                OverrideBorder.Child = new AdminHomePage(this, Convert.ToInt32(min.UserID), min.Username);
             }
         }
 

@@ -6,20 +6,32 @@
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="#333333">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="20"/>
+            <ColumnDefinition MaxWidth="50"/>
             <ColumnDefinition/>
-            <ColumnDefinition MaxWidth="20"/>
+            <ColumnDefinition MaxWidth="50"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="20"/>
             <RowDefinition/>
-            <RowDefinition MaxHeight="20"/>
+            <RowDefinition MaxHeight="25"/>
+            <RowDefinition MaxHeight="25"/>
         </Grid.RowDefinitions>
 
-        <ListView Name="Resutls_Table" Grid.Row="1" Grid.Column="1"/>
-        <Button Name="Back_Button" Content="Back" Grid.Row="2" Grid.Column="2" Click="Back_Button_Click"/>
+        <DataGrid Name="Resutls_Table" Grid.Row="1" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Edit Button">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit" Click="Edit_Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Name="Back_Button" Content="Back" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Click="Back_Button_Click" Margin="600, 0, 20, 10"/>
 
     </Grid>
 </UserControl>

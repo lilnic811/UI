@@ -23,11 +23,11 @@ namespace UI.Tables
     /// </summary>
     public partial class Song_Creation : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
         AlbumsTableAdapter AT = new AlbumsTableAdapter();
         ProvidersTableAdapter PT = new ProvidersTableAdapter();
 
-        public Song_Creation(UserHomePage main)
+        public Song_Creation(AdminHomePage main)
         {
             baseWindow = main;
             InitializeComponent();

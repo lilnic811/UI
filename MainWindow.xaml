@@ -43,7 +43,7 @@
 
         <TextBlock Text="Login" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <Border Name="OverrideBorder" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+        
 
         <TextBlock Text="Username: " Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="40"/>
         <TextBox Name="UsernameText" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" FontSize="25"  Margin="10, 10, 0, 10"/>
@@ -56,5 +56,6 @@
         <Button Name="Login_Button" Content="Login" Grid.Row="5" Grid.Column="1" Click="Login_Button_Click"/>
         <Button Name="Crate_Button" Content="Create" Grid.Row="5" Grid.Column="3" Click="Crate_Button_Click"/>
 
+        <Border Name="OverrideBorder" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="5"/>
     </Grid>
 </Window>

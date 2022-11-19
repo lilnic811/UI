@@ -22,9 +22,9 @@ namespace UI.Tables
     /// </summary>
     public partial class Musicians_Creation : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
 
-        public Musicians_Creation(UserHomePage main)
+        public Musicians_Creation(AdminHomePage main)
         {
             baseWindow = main;
             InitializeComponent();

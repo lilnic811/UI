@@ -22,9 +22,9 @@ namespace UI.Tables
     /// </summary>
     public partial class Album : UserControl
     {
-        UserHomePage baseWindow;
+        AdminHomePage baseWindow;
 
-        public Album(UserHomePage main)
+        public Album(AdminHomePage main)
         {
             baseWindow = main;
             InitializeComponent();

@@ -93,8 +93,8 @@
     <Compile Include="Tables\User_Creation.xaml.cs">
       <DependentUpon>User_Creation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserHomePage.xaml.cs">
-      <DependentUpon>UserHomePage.xaml</DependentUpon>
+    <Compile Include="AdminHomePage.xaml.cs">
+      <DependentUpon>AdminHomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="Queries\LoginScreen.xaml">
       <SubType>Designer</SubType>
@@ -159,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserHomePage.xaml">
+    <Page Include="AdminHomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

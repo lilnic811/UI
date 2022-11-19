@@ -12,19 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.musicDataSetTableAdapters;
 using UI.Tables;
 
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for UserHomePage.xaml
+    /// Interaction logic for AdminHomePage.xaml
     /// </summary>
-    public partial class UserHomePage : UserControl
+    public partial class AdminHomePage : UserControl
     {
         MainWindow baseWindow;
         int UserID;
 
-        public UserHomePage(MainWindow main, int userID, string name)
+        public AdminHomePage(MainWindow main, int userID, string name)
         {
             baseWindow = main;
             UserID = userID;
@@ -71,6 +72,9 @@ namespace UI
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
+            UsersTableAdapter UT = new UsersTableAdapter();
+            var user = UT.GetData().Where(Q => Q.UserID == UserID);
+            UT.Update(user.Min().Username, user.Min().UserEmail, false, user.Min().UserID, user.Min().Username, user.Min().UserEmail, true);
             baseWindow.OverrideBorder.Child = null;
         }
     }
