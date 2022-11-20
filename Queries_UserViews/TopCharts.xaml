@@ -88,7 +88,7 @@
         </Border>
 
 
-        <Button Name="LogoutButton" Click="LogoutButton_Click" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2" Margin="20, 10, 20, 10">
+        <Button Name="BackButton" Click="BackButton_Click" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2" Margin="20, 10, 20, 10">
             BACK
         </Button>
 

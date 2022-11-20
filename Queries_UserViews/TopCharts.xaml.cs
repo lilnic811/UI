@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using UI.Tables;
 
 namespace UI.Queries_UserViews
 {
@@ -20,9 +22,21 @@ namespace UI.Queries_UserViews
     /// </summary>
     public partial class TopCharts : UserControl
     {
-        public TopCharts()
+        UserMainView baseWindow;
+        int UserID;
+
+
+        public TopCharts(UserMainView main, int userID, string userName)
         {
             InitializeComponent();
+            baseWindow = main;
+            UserID = userID;
+
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            //baseWindow.OverrideBorder.Child = new UserMainView(baseWindow, UserID, "");
         }
     }
 }
