@@ -69,6 +69,9 @@
     <Compile Include="Queries_UserViews\SearchResults.xaml.cs">
       <DependentUpon>SearchResults.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Queries_UserViews\TopCharts.xaml.cs">
+      <DependentUpon>TopCharts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Queries_UserViews\UserEditSong.xaml.cs">
       <DependentUpon>UserEditSong.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Queries_UserViews\SearchResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Queries_UserViews\TopCharts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
