@@ -28,7 +28,7 @@
 
     </Control.Resources>
 
-    <Grid>
+    <Grid Background="#333333">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -55,7 +55,7 @@
 
 
         <Border Grid.Row="3" Grid.RowSpan="5" Grid.ColumnSpan="5" Background="FloralWhite">
-            <ListBox Name="OrderList">
+            <ListBox Name="PlaylistList" FontSize="22">
                 <!--SelectionChanged="OnSelectionChange" IsSynchronizedWithCurrentItem="True">-->
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -101,6 +101,6 @@
             LOG OUT
         </Button>
 
-
+        <Border Name="OverrideBorder" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="7"/>
     </Grid>
 </UserControl>

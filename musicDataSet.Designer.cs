@@ -3413,6 +3413,10 @@ namespace UI {
             
             private global::System.Data.DataColumn columnRating;
             
+            private global::System.Data.DataColumn columnDateAdded;
+            
+            private global::System.Data.DataColumn columnDateDeleted;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public UserRatingsDataTable() {
@@ -3480,6 +3484,22 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateAddedColumn {
+                get {
+                    return this.columnDateAdded;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateDeletedColumn {
+                get {
+                    return this.columnDateDeleted;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3515,13 +3535,15 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public UserRatingsRow AddUserRatingsRow(UsersRow parentUsersRowByFK__UserRatin__UserI__51EF2864, SongsRow parentSongsRowByFK__UserRatin__SongI__52E34C9D, int Rating) {
+            public UserRatingsRow AddUserRatingsRow(UsersRow parentUsersRowByFK__UserRatin__UserI__51EF2864, SongsRow parentSongsRowByFK__UserRatin__SongI__52E34C9D, int Rating, System.DateTime DateAdded, System.DateTime DateDeleted) {
                 UserRatingsRow rowUserRatingsRow = ((UserRatingsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null,
-                        Rating};
+                        Rating,
+                        DateAdded,
+                        DateDeleted};
                 if ((parentUsersRowByFK__UserRatin__UserI__51EF2864 != null)) {
                     columnValuesArray[1] = parentUsersRowByFK__UserRatin__UserI__51EF2864[0];
                 }
@@ -3561,6 +3583,8 @@ namespace UI {
                 this.columnUserID = base.Columns["UserID"];
                 this.columnSongID = base.Columns["SongID"];
                 this.columnRating = base.Columns["Rating"];
+                this.columnDateAdded = base.Columns["DateAdded"];
+                this.columnDateDeleted = base.Columns["DateDeleted"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3574,6 +3598,10 @@ namespace UI {
                 base.Columns.Add(this.columnSongID);
                 this.columnRating = new global::System.Data.DataColumn("Rating", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRating);
+                this.columnDateAdded = new global::System.Data.DataColumn("DateAdded", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateAdded);
+                this.columnDateDeleted = new global::System.Data.DataColumn("DateDeleted", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateDeleted);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnUserRatingID}, true));
                 this.columnUserRatingID.AutoIncrement = true;
@@ -3582,6 +3610,7 @@ namespace UI {
                 this.columnUserRatingID.AllowDBNull = false;
                 this.columnUserRatingID.ReadOnly = true;
                 this.columnUserRatingID.Unique = true;
+                this.columnDateAdded.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4833,6 +4862,33 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateAdded {
+                get {
+                    return ((global::System.DateTime)(this[this.tableUserRatings.DateAddedColumn]));
+                }
+                set {
+                    this[this.tableUserRatings.DateAddedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateDeleted {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableUserRatings.DateDeletedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateDeleted\' in table \'UserRatings\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUserRatings.DateDeletedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SongsRow SongsRow {
                 get {
                     return ((SongsRow)(this.GetParentRow(this.Table.ParentRelations["FK__UserRatin__SongI__52E34C9D"])));
@@ -4887,6 +4943,18 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetRatingNull() {
                 this[this.tableUserRatings.RatingColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDateDeletedNull() {
+                return this.IsNull(this.tableUserRatings.DateDeletedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDateDeletedNull() {
+                this[this.tableUserRatings.DateDeletedColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8482,10 +8550,12 @@ SELECT SongID, SongName, AlbumID, TrackNumber FROM Songs WHERE (SongID = @SongID
             tableMapping.ColumnMappings.Add("UserID", "UserID");
             tableMapping.ColumnMappings.Add("SongID", "SongID");
             tableMapping.ColumnMappings.Add("Rating", "Rating");
+            tableMapping.ColumnMappings.Add("DateAdded", "DateAdded");
+            tableMapping.ColumnMappings.Add("DateDeleted", "DateDeleted");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[UserRatings] WHERE (([UserRatingID] = @Original_UserRatingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_SongID = 1 AND [SongID] IS NULL) OR ([SongID] = @Original_SongID)) AND ((@IsNull_Rating = 1 AND [Rating] IS NULL) OR ([Rating] = @Original_Rating)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [UserRatings] WHERE (([UserRatingID] = @Original_UserRatingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_SongID = 1 AND [SongID] IS NULL) OR ([SongID] = @Original_SongID)) AND ((@IsNull_Rating = 1 AND [Rating] IS NULL) OR ([Rating] = @Original_Rating)) AND ([DateAdded] = @Original_DateAdded) AND ((@IsNull_DateDeleted = 1 AND [DateDeleted] IS NULL) OR ([DateDeleted] = @Original_DateDeleted)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserRatingID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserRatingID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -8493,31 +8563,40 @@ SELECT SongID, SongName, AlbumID, TrackNumber FROM Songs WHERE (SongID = @SongID
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SongID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Rating", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rating", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rating", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateAdded", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateAdded", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateDeleted", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateDeleted", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateDeleted", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateDeleted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[UserRatings] ([UserID], [SongID], [Rating]) VALUES (@UserID, @" +
-                "SongID, @Rating);\r\nSELECT UserRatingID, UserID, SongID, Rating FROM UserRatings " +
-                "WHERE (UserRatingID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [UserRatings] ([UserID], [SongID], [Rating], [DateAdded], [DateDeleted]) VALUES (@UserID, @SongID, @Rating, @DateAdded, @DateDeleted);
+SELECT UserRatingID, UserID, SongID, Rating, DateAdded, DateDeleted FROM UserRatings WHERE (UserRatingID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SongID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rating", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rating", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateAdded", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateAdded", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateDeleted", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserRatings] SET [UserID] = @UserID, [SongID] = @SongID, [Rating] = @Rating WHERE (([UserRatingID] = @Original_UserRatingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_SongID = 1 AND [SongID] IS NULL) OR ([SongID] = @Original_SongID)) AND ((@IsNull_Rating = 1 AND [Rating] IS NULL) OR ([Rating] = @Original_Rating)));
-SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID = @UserRatingID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [UserRatings] SET [UserID] = @UserID, [SongID] = @SongID, [Rating] = @Rating, [DateAdded] = @DateAdded, [DateDeleted] = @DateDeleted WHERE (([UserRatingID] = @Original_UserRatingID) AND ((@IsNull_UserID = 1 AND [UserID] IS NULL) OR ([UserID] = @Original_UserID)) AND ((@IsNull_SongID = 1 AND [SongID] IS NULL) OR ([SongID] = @Original_SongID)) AND ((@IsNull_Rating = 1 AND [Rating] IS NULL) OR ([Rating] = @Original_Rating)) AND ([DateAdded] = @Original_DateAdded) AND ((@IsNull_DateDeleted = 1 AND [DateDeleted] IS NULL) OR ([DateDeleted] = @Original_DateDeleted)));
+SELECT UserRatingID, UserID, SongID, Rating, DateAdded, DateDeleted FROM UserRatings WHERE (UserRatingID = @UserRatingID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SongID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rating", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rating", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateAdded", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateAdded", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateDeleted", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserRatingID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserRatingID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SongID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Rating", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rating", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rating", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rating", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateAdded", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateAdded", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateDeleted", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateDeleted", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateDeleted", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateDeleted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserRatingID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "UserRatingID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -8534,7 +8613,8 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT UserRatingID, UserID, SongID, Rating FROM dbo.UserRatings";
+            this._commandCollection[0].CommandText = "SELECT UserRatingID, UserID, SongID, Rating, DateAdded, DateDeleted FROM UserRati" +
+                "ngs";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -8595,7 +8675,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<byte> Original_Rating) {
+        public virtual int Delete(long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<int> Original_Rating, System.DateTime Original_DateAdded, global::System.Nullable<global::System.DateTime> Original_DateDeleted) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_UserRatingID));
             if ((Original_UserID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -8615,11 +8695,20 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
             }
             if ((Original_Rating.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((byte)(Original_Rating.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_Rating.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_DateAdded));
+            if ((Original_DateDeleted.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(Original_DateDeleted.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -8641,7 +8730,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<byte> Rating) {
+        public virtual int Insert(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<int> Rating, System.DateTime DateAdded, global::System.Nullable<global::System.DateTime> DateDeleted) {
             if ((UserID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((long)(UserID.Value));
             }
@@ -8655,10 +8744,17 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((Rating.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(Rating.Value));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Rating.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(DateAdded));
+            if ((DateDeleted.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(DateDeleted.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -8680,7 +8776,7 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<byte> Rating, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<byte> Original_Rating, long UserRatingID) {
+        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<int> Rating, System.DateTime DateAdded, global::System.Nullable<global::System.DateTime> DateDeleted, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<int> Original_Rating, System.DateTime Original_DateAdded, global::System.Nullable<global::System.DateTime> Original_DateDeleted, long UserRatingID) {
             if ((UserID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(UserID.Value));
             }
@@ -8694,37 +8790,53 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((Rating.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(Rating.Value));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Rating.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((long)(Original_UserRatingID));
-            if ((Original_UserID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((long)(Original_UserID.Value));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DateAdded));
+            if ((DateDeleted.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(DateDeleted.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Original_SongID.HasValue == true)) {
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((long)(Original_UserRatingID));
+            if ((Original_UserID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((long)(Original_SongID.Value));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((long)(Original_UserID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((Original_Rating.HasValue == true)) {
+            if ((Original_SongID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(Original_Rating.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((long)(Original_SongID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((long)(UserRatingID));
+            if ((Original_Rating.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_Rating.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_DateAdded));
+            if ((Original_DateDeleted.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_DateDeleted.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((long)(UserRatingID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8745,8 +8857,8 @@ SELECT UserRatingID, UserID, SongID, Rating FROM UserRatings WHERE (UserRatingID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<byte> Rating, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<byte> Original_Rating) {
-            return this.Update(UserID, SongID, Rating, Original_UserRatingID, Original_UserID, Original_SongID, Original_Rating, Original_UserRatingID);
+        public virtual int Update(global::System.Nullable<long> UserID, global::System.Nullable<long> SongID, global::System.Nullable<int> Rating, System.DateTime DateAdded, global::System.Nullable<global::System.DateTime> DateDeleted, long Original_UserRatingID, global::System.Nullable<long> Original_UserID, global::System.Nullable<long> Original_SongID, global::System.Nullable<int> Original_Rating, System.DateTime Original_DateAdded, global::System.Nullable<global::System.DateTime> Original_DateDeleted) {
+            return this.Update(UserID, SongID, Rating, DateAdded, DateDeleted, Original_UserRatingID, Original_UserID, Original_SongID, Original_Rating, Original_DateAdded, Original_DateDeleted, Original_UserRatingID);
         }
     }
     

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.musicDataSetTableAdapters;
+using UI.Queries_UserViews;
 using UI.Tables;
 
 namespace UI
@@ -43,10 +44,12 @@ namespace UI
 
                 UsernameText.Text = "";
                 EmailText.Text = "";
+                invalidAttempt.Visibility = Visibility.Hidden;
 
-                if (min.Username.Equals("Admin") && min.UserEmail.Equals("Admin") && min.UserID == 0)
-                    Console.WriteLine("asdf");
-                OverrideBorder.Child = new AdminHomePage(this, Convert.ToInt32(min.UserID), min.Username);
+                if (min.Username.Equals("Admin") && min.UserEmail.Equals("Admin") && min.UserID == 1)
+                    OverrideBorder.Child = new AdminHomePage(this, Convert.ToInt32(min.UserID), min.Username);
+                else
+                    OverrideBorder.Child = new UserMainView(this, Convert.ToInt32(min.UserID), min.Username);
             }
         }
 

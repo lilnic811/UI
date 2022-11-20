@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using UI.musicDataSetTableAdapters;
+using UI.Tables;
 
 namespace UI.Queries_UserViews
 {
@@ -21,31 +23,48 @@ namespace UI.Queries_UserViews
     /// </summary>
     public partial class UserMainView : UserControl
     {
-        public UserMainView()
+        MainWindow baseWindow;
+        int UserID;
+
+        public UserMainView(MainWindow main, int userID, string name)
         {
+            baseWindow = main;
+            UserID = userID;
+
             InitializeComponent();
 
-            //HelloText.Text = $"Hello, {name}!";
+            HelloText.Text = $"Hello, {name}!";
+
+            PlaylistsTableAdapter PLT = new PlaylistsTableAdapter();
+            var PLs = PLT.GetData().Where(Q => Q.UserID == UserID);
+            foreach (var item in PLs)
+            {
+                PlaylistList.Items.Add(item.PlaylistName);
+            }
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            UsersTableAdapter UT = new UsersTableAdapter();
+            var user = UT.GetData().Where(Q => Q.UserID == UserID);
+            UT.Update(user.Min().Username, user.Min().UserEmail, false, user.Min().UserID, user.Min().Username, user.Min().UserEmail, user.Min().IsActive);
+            baseWindow.OverrideBorder.Child = null;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new SearchMusic(this, UserID);
         }
 
         private void ViewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            
         }
 
         private void CreatePlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-
+            OverrideBorder.Child = new Playlist_Creation(this, UserID);
         }
     }
 }
