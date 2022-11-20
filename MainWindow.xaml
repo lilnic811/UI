@@ -8,12 +8,12 @@
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style x:Key="bottomButtons" TargetType="Button">
-            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="36"/>
             <Setter Property="Background" Value="Honeydew" />
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="30"/>
+                    <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Style.Resources>
         </Style>
@@ -32,17 +32,16 @@
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="20"/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition MaxHeight="20"/>
-            <RowDefinition MaxHeight="20"/>
+            <RowDefinition MaxHeight="75"/>
+            <RowDefinition MaxHeight="75"/>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition MaxHeight="20"/>
         </Grid.RowDefinitions>
         <!-- MenuItemSelectionControl placed in border in backing class-->
         <!--<local:MenuItemSelectionControl/>-->
 
-        <TextBlock Text="MMDb Login" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Text="MMDb Login" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
         
 
@@ -54,8 +53,8 @@
 
         <TextBlock Name="invalidAttempt" Visibility="Hidden" Text="Invalid Login Credentials" Foreground="Red" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <Button Name="Login_Button" Content="Login" Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" Click="Login_Button_Click"/>
-        <Button Name="Create_Button" Content="Create" Grid.Row="5" Grid.RowSpan="2" Grid.Column="3" Click="Create_Button_Click"/>
+        <Button Name="Login_Button" Content="Login" Grid.Row="5"  Grid.Column="1" Click="Login_Button_Click"/>
+        <Button Name="Create_Button" Content="Create" Grid.Row="5"  Grid.Column="3" Click="Create_Button_Click"/>
 
         <Border Name="OverrideBorder" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="5"/>
     </Grid>
