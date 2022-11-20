@@ -5269,3 +5269,5 @@ WHERE UserID = 1
 --SELECT * FROM dbo.Users
 
 --SELECT * FROM dbo.playlistsongs
+
+DELETE FROM dbo.UserRatings WHERE SongID IS NULL
