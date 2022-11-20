@@ -4115,6 +4115,23 @@ GO
 
 
 
+--inserts data into UserRatings table (Part 2) - specific song focus for ratings testing
+INSERT UserRatings(UserID, SongID, Rating)
+VALUES 
+    ((SELECT UserID FROM Users WHERE UserName = 'KohnJeller'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),5),
+    ((SELECT UserID FROM Users WHERE UserName = 'OlegGray'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),5),
+    ((SELECT UserID FROM Users WHERE UserName = 'AutumnGreen'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),4),
+    ((SELECT UserID FROM Users WHERE UserName = 'HanaeMack'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),2),
+    ((SELECT UserID FROM Users WHERE UserName = 'YolandaSoto'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),5),
+    ((SELECT UserID FROM Users WHERE UserName = 'EvangelineCash'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),4),
+    ((SELECT UserID FROM Users WHERE UserName = 'LillianHays'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),4),
+    ((SELECT UserID FROM Users WHERE UserName = 'BarrettCline'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),5),
+    ((SELECT UserID FROM Users WHERE UserName = 'OdysseusDonaldson'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),3),
+    ((SELECT UserID FROM Users WHERE UserName = 'LeeMcconnell'),(SELECT SongID FROM Songs AS S INNER JOIN Albums AS A ON A.AlbumID = S.AlbumID INNER JOIN Musicians AS M ON M.MusicianID = A.MusicianID WHERE S.SongName = 'Lilili Yabbay' AND A.AlbumName = 'TEEN, AGE' AND M.MusicianName = 'Seventeen' AND S.TrackNumber = 6),5)
+
+
+
+
 --inserts data into Playlists table
 INSERT Playlists(PlaylistName, UserID)
 VALUES
