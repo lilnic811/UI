@@ -96,6 +96,9 @@
     <Compile Include="AdminHomePage.xaml.cs">
       <DependentUpon>AdminHomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Queries_UserViews\UserMainView.xaml.cs">
+      <DependentUpon>UserMainView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Queries_UserViews\LoginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

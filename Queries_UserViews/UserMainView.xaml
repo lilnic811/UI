@@ -55,7 +55,8 @@
 
 
         <Border Grid.Row="3" Grid.RowSpan="5" Grid.ColumnSpan="5" Background="FloralWhite">
-            <ListBox Name="OrderList"><!--SelectionChanged="OnSelectionChange" IsSynchronizedWithCurrentItem="True">-->
+            <ListBox Name="OrderList">
+                <!--SelectionChanged="OnSelectionChange" IsSynchronizedWithCurrentItem="True">-->
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
