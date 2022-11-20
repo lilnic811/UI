@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.musicDataSetTableAdapters;
+using UI.Queries_UserViews;
 
 namespace UI
 {
@@ -22,13 +23,13 @@ namespace UI
     /// </summary>
     public partial class UserEditSong : UserControl
     {
-        AdminHomePage baseWindow;
+        UserMainView baseWindow;
         SearchResults searchWindow;
         int UserID;
         int SongID;
         PlaylistsTableAdapter PT = new PlaylistsTableAdapter();
 
-        public UserEditSong(AdminHomePage main, SearchResults results, int userID, int songID)
+        public UserEditSong(UserMainView main, SearchResults results, int userID, int songID)
         {
             baseWindow = main;
             searchWindow = results;
@@ -61,9 +62,17 @@ namespace UI
             }
 
             UserRatingsTableAdapter URT = new UserRatingsTableAdapter();
-            //URT.Insert(UserID, SongID, (long?)RateSlider.Value);
-
-            //PLS.Rows.Add(new Object[] { 777, playlist.PlaylistID, SongID });
+            var songs = URT.GetData().Where(Q => Q.SongID == SongID && Q.UserID == UserID);
+            if (songs.Count() == 0)
+            {
+                URT.Insert(UserID, SongID, (int)RateSlider.Value, DateTime.Now, null);
+            }
+            else
+            {
+                var song = songs.Min();
+                URT.Update(UserID, SongID, (int)RateSlider.Value, DateTime.Now, null, song.UserRatingID,
+                            UserID, SongID, song.Rating, DateTime.Now, null);
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static UI.musicDataSet;
 using UI.musicDataSetTableAdapters;
+using UI.Queries_UserViews;
 
 namespace UI.Tables
 {
@@ -22,10 +23,10 @@ namespace UI.Tables
     /// </summary>
     public partial class Playlist_Creation : UserControl
     {
-        AdminHomePage baseWindow;
+        UserMainView baseWindow;
         int UserID;
 
-        public Playlist_Creation(AdminHomePage main, int userID)
+        public Playlist_Creation(UserMainView main, int userID)
         {
             baseWindow = main;
             UserID = userID;
@@ -36,6 +37,8 @@ namespace UI.Tables
         {
             PlaylistsTableAdapter PT = new PlaylistsTableAdapter();
             PT.Insert(PlaylistText.Text, UserID);
+            baseWindow.PlaylistList.Items.Add(PlaylistText.Text);
+            baseWindow.OverrideBorder.Child = null;
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)

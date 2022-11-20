@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.musicDataSetTableAdapters;
+using UI.Queries_UserViews;
 
 namespace UI
 {
@@ -22,10 +23,10 @@ namespace UI
     /// </summary>
     public partial class SearchMusic : UserControl
     {
-        AdminHomePage baseWindow;
+        UserMainView baseWindow;
         int UserID;
 
-        public SearchMusic(AdminHomePage main, int userID)
+        public SearchMusic(UserMainView main, int userID)
         {
             baseWindow = main;
             UserID = userID;
@@ -46,7 +47,11 @@ namespace UI
             baseWindow.OverrideBorder.Child = new SearchResults(baseWindow, UserID, SongText.Text, GenreDropDown.Text, ArtistText.Text, YearText.Text, RatingDropDown.Text);
         }
 
-        
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+            baseWindow.OverrideBorder.Child = null;
+        }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

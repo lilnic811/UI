@@ -35,11 +35,6 @@ namespace UI
             HelloText.Text = $"Hello, {name}!";
         }
 
-        private void Query_Button_Click(object sender, RoutedEventArgs e)
-        {
-            OverrideBorder.Child = new SearchMusic(this, UserID);
-        }
-
         private void Add_Artist_Button_Click(object sender, RoutedEventArgs e)
         {
             OverrideBorder.Child = new Musicians_Creation(this);
@@ -58,11 +53,6 @@ namespace UI
         private void Add_Song_Button_Click(object sender, RoutedEventArgs e)
         {
             OverrideBorder.Child = new Song_Creation(this);
-        }
-
-        private void Add_Playlist_Button_Click(object sender, RoutedEventArgs e)
-        {
-            OverrideBorder.Child = new Playlist_Creation(this, UserID);
         }
 
         private void Add_Provider_Button_Click(object sender, RoutedEventArgs e)

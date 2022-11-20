@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.musicDataSetTableAdapters;
+using UI.Queries_UserViews;
 
 namespace UI
 {
@@ -23,10 +24,10 @@ namespace UI
     /// </summary>
     public partial class SearchResults : UserControl
     {
-        AdminHomePage baseWindow;
+        UserMainView baseWindow;
         int UserID;
 
-        public SearchResults(AdminHomePage main, int userID, string song, string genre, string musician, string year, string rating)
+        public SearchResults(UserMainView main, int userID, string song, string genre, string musician, string year, string rating)
         {
             baseWindow = main;
             UserID = userID;
@@ -90,8 +91,6 @@ namespace UI
             //        Rating = r.Rating
             //    };
 
-            //TODO IMPLIMENT temp 0 for userID
-
             var temp1 =
                 from s in songsList
                 from r in ratingsList
@@ -110,6 +109,7 @@ namespace UI
                 select new
                 {
                     q.SongName,
+                    q.SongID,
                     q.Rating,
                     a.AlbumName,
                     a.ReleaseYear,
@@ -123,6 +123,7 @@ namespace UI
                 select new
                 {
                     q.SongName,
+                    q.SongID,
                     q.Rating,
                     q.AlbumName,
                     q.ReleaseYear,
@@ -136,6 +137,7 @@ namespace UI
                 select new
                 {
                     SongName = q.SongName,
+                    SongID = (int)q.SongID,
                     Rating = q.Rating,
                     AlbumName = q.AlbumName,
                     ReleaseYear = q.ReleaseYear,
@@ -154,7 +156,9 @@ namespace UI
         //TODO Hook up edit button
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-            baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, this, UserID, 7);
+            dynamic row = Resutls_Table.SelectedItems[0];
+
+            baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, this, UserID, row.SongID);
         }
     }
 }
