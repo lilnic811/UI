@@ -73,6 +73,9 @@ namespace UI
                 URT.Update(UserID, SongID, (int)RateSlider.Value, DateTime.Now, null, song.UserRatingID,
                             UserID, SongID, song.Rating, DateTime.Now, null);
             }
+
+            baseWindow.OverrideBorder.Child = searchWindow;
+
         }
     }
 }

@@ -48,13 +48,15 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition MaxHeight="20"/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <TextBlock Name="HelloText" Text="Hello, Name!" Foreground="White" FontSize="72"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-        <ListView Name="PlaylistList" FontSize="28" Grid.Row="3" Grid.RowSpan="5" Grid.ColumnSpan="5" Background="FloralWhite" Margin="20, 0, 0, 15"/>
+        <ListView Name="PlaylistList" FontSize="28" Grid.Row="3" Grid.RowSpan="7" Grid.ColumnSpan="5" Background="FloralWhite" Margin="20, 0, 0, 15"/>
 
 
         <Button Name="CreatePlaylistButton" Click="CreatePlaylistButton_Click" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2" Margin="20, 10, 20, 10">
@@ -65,14 +67,18 @@
             VIEW
         </Button>
 
-        <Button Name="SearchButton" Click="SearchButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Margin="20, 5, 20, 15">
+        <Button Name="SpecsButton" Click="SpecsButton_Click" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" Margin="20, 10, 20, 10">
+            INFO
+        </Button>
+
+        <Button Name="SearchButton" Click="SearchButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" Margin="20, 5, 20, 15">
             EXPLORE
         </Button>
 
-        <Button Name="LogoutButton" Click="LogoutButton_Click" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Margin="20, 5, 20, 15">
+        <Button Name="LogoutButton" Click="LogoutButton_Click" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="10" Grid.RowSpan="2" Margin="20, 5, 20, 15">
             LOG OUT
         </Button>
 
-        <Border Name="OverrideBorder" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="7"/>
+        <Border Name="OverrideBorder" Grid.Column="0" Grid.Row="0" Grid.RowSpan="12" Grid.ColumnSpan="7"/>
     </Grid>
 </UserControl>

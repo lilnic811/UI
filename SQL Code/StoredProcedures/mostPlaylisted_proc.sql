@@ -4,7 +4,7 @@ GO
 CREATE OR ALTER PROCEDURE dbo.mostPlaylisted_proc
 AS
 BEGIN
-SELECT TOP 5
+SELECT TOP 10
 	S.SongName
 	,M.MusicianName
 	,COUNT(*) AS Appearances

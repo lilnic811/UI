@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +72,13 @@ namespace UI.Queries_UserViews
         private void CreatePlaylistButton_Click(object sender, RoutedEventArgs e)
         {
             OverrideBorder.Child = new Playlist_Creation(this, UserID);
+        }
+
+        private void SpecsButton_Click(object sender, RoutedEventArgs e)
+        {
+      //      OverrideBorder.Child = new SearchResults(this, UserID, (int)playlist.PlaylistID);
+
+           
         }
     }
 }

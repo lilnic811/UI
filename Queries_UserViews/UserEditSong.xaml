@@ -13,7 +13,7 @@
             <Setter Property="Background" Value="Honeydew" />
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="40"/>
+                    <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Style.Resources>
         </Style>
@@ -46,6 +46,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition MaxHeight="40"/>
             <RowDefinition/>
 
         </Grid.RowDefinitions>
@@ -56,8 +57,8 @@
         <TextBlock Text="Add to playlist" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"/>
         <ComboBox Name="PlaylistDropDown" IsEnabled="True" FontSize="24" Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="4" />
 
-        <Button Name="Save_Button" Content="Save" Grid.Row="6" Grid.Column="3" Click="Save_Button_Click"/>
-        <Button Name="Back_Button" Content="Back" Grid.Row="6" Grid.Column="8" Click="Back_Button_Click"/>
+        <Button Name="Save_Button" Content="Save" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="Save_Button_Click"/>
+        <Button Name="Back_Button" Content="Back" Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="Back_Button_Click"/>
 
     </Grid>
 </UserControl>
