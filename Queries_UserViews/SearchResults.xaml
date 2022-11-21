@@ -17,6 +17,7 @@
             <RowDefinition/>
             <RowDefinition MaxHeight="25"/>
             <RowDefinition MaxHeight="25"/>
+            <RowDefinition MaxHeight="25"/>
         </Grid.RowDefinitions>
 
         <DataGrid Name="Resutls_Table" Grid.Row="1" Grid.Column="1">
@@ -31,7 +32,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Name="Back_Button" Content="BACK" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Click="Back_Button_Click" Margin="600, 10, 20, 10"/>
+        <Button Name="Back_Button" Content="BACK" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" Click="Back_Button_Click" Margin="600, 10, 20, 10"/>
 
     </Grid>
 </UserControl>

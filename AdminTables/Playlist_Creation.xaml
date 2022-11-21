@@ -16,15 +16,15 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="20"/>
-            <RowDefinition/>
+            <RowDefinition MaxHeight="80"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition MaxHeight="20"/>
 
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Playlist Name: " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="40"/>
-        <TextBox Name="PlaylistText" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" FontSize="25"  Margin="10, 10, 0, 10"/>
+        <TextBlock Text="Playlist Name: " Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="40" Foreground="White"/>
+        <TextBox Name="PlaylistText" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" FontSize="25"  Margin="10, 0, 10, 0"/>
 
         <Button Name="Save_Button" Content="Save" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="25" FontSize="48" Click="Save_Button_Click"/>
         <Button Name="Back_Button" Content="Back" Grid.Row="3" Grid.Column="3" Margin="25" FontSize="48" Click="Back_Button_Click"/>
