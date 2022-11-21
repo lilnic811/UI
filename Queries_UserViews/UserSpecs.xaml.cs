@@ -27,45 +27,48 @@ namespace UI.Queries_UserViews
 
         public UserSpecs(UserMainView main, int userID)
         {
-
-
+            baseWindow = main;
+            UserID = userID;
 
 
             InitializeComponent();
 
             using (SqlConnection conn = new SqlConnection("Data Source=cis560-team3.database.windows.net;Initial Catalog=music;Persist Security Info=True;User ID=admin1;Password=Singtome!"))
             {
-                conn.Open();
                 //musicDataSet.
                 // 1.  create a command object identifying the stored procedure
-                SqlCommand cmd = new SqlCommand("genreBreakdown_proc", conn);
+                SqlCommand cmd3 = new SqlCommand("genreBreakdown_proc", conn);
 
                 // 2. set the command object so it knows to execute a stored procedure
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd3.CommandType = CommandType.StoredProcedure;
 
+                cmd3.Parameters.AddWithValue("@userID", UserID);
+                conn.Open();
 
                 // execute the command
-                using (SqlDataReader rdr = cmd.ExecuteReader())
+                using (SqlDataReader rdr = cmd3.ExecuteReader())
                 {
                     // iterate through results, printing each to console
                     while (rdr.Read())
                     {
                         var song = new
                         {
-                            SongName = rdr["GenreName"],
-                            MusicianName = rdr["Proportion"]
+                            GenreName = rdr["GenreName"],
+                            Proportion = rdr["Proportion"]
                         };
 
-                        //TopChart.Items.Add(song.SongName + " - " + song.MusicianName);
+                        GenreBreakdown.Items.Add(song.GenreName + " - " + song.Proportion);
                     }
 
 
                 }
 
-                SqlCommand cmd2 = new SqlCommand("mostPlaylisted_proc", conn);
+                SqlCommand cmd2 = new SqlCommand("avgUserPlaylistRating_proc", conn);
 
                 // 2. set the command object so it knows to execute a stored procedure
                 cmd2.CommandType = CommandType.StoredProcedure;
+
+                cmd2.Parameters.AddWithValue("@userID", UserID);
 
 
                 // execute the command
@@ -79,7 +82,7 @@ namespace UI.Queries_UserViews
                             AvgRating = rdr2["AvgRating"],
                         };
 
-                        //playlistChart.Items.Add(song.SongName + " - " + song.MusicianName);
+                        PopulateAvgRating.Text = rating.AvgRating.ToString();
                     }
 
                 }

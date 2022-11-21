@@ -1,7 +1,7 @@
 USE music;
 
 GO
-CREATE OR ALTER PROCEDURE dbo.genreBreakdown_proc(
+CREATE OR ALTER PROCEDURE dbo.avgUserPlaylistRating_proc(
 @userID BIGINT
 )
 AS

@@ -76,7 +76,7 @@ namespace UI.Queries_UserViews
 
         private void SpecsButton_Click(object sender, RoutedEventArgs e)
         {
-      //      OverrideBorder.Child = new SearchResults(this, UserID, (int)playlist.PlaylistID);
+            OverrideBorder.Child = new UserSpecs(this, UserID);
 
            
         }

@@ -17,7 +17,7 @@ print(@songCount)
 SELECT 
 	G.GenreName
 	--,COUNT(*) AS songCount
-	,ROUND((COUNT(*) / @songCount * 100), 2) AS Proportion
+	,CAST(COUNT(*) / @songCount * 100 AS DECIMAL (4, 2)) AS Proportion
 	FROM dbo.Users U
 	INNER JOIN dbo.Playlists P ON P.UserID = U.UserID
 	INNER JOIN dbo.PlaylistSongs PS ON PS.PlaylistID = P.PlaylistID

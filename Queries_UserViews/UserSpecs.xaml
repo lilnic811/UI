@@ -51,7 +51,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Name="rateTitle" Text="Your top Genres" Foreground="White" FontSize="36"  Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="rateTitle" Text="Your Top Genres" Foreground="White" FontSize="36"  Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Name="avgRatingsTitle" Text="Other users would" Foreground="White" FontSize="36"  Grid.Row="1"  Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Name="avgRatingsTitle2" Text="rate your playlists" Foreground="White" FontSize="36"  Grid.Row="2"  Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Name="avgRatingsTitle3" Text="an average of" Foreground="White" FontSize="36"  Grid.Row="3"  Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -59,11 +59,10 @@
 
         <ListBox Name="GenreBreakdown"  Grid.Row="2" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="3" Background="GhostWhite" Foreground="Black" FontSize="18"/>
 
-        <TextBox />
-        <TextBlock Name="playlistChart" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="3" Foreground="Black" FontSize="16"/>
+        <TextBlock Name="PopulateAvgRating" Text="0.00" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="3" Foreground="White" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-        <Button Name="BackButton" Click="BackButton_Click" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="6" Grid.RowSpan="2" Margin="40, 10, 0, 15">
+        <Button Name="BackButton" Click="BackButton_Click" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="6" Grid.RowSpan="2" Margin="40, 15, 0, 15">
             BACK
         </Button>
 
