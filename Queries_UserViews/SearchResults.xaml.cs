@@ -58,7 +58,7 @@ namespace UI
 
             AlbumsTableAdapter AT = new AlbumsTableAdapter();
             EnumerableRowCollection<musicDataSet.AlbumsRow> albumsList;
-            if (song.Equals(""))
+            if (year.Equals(""))
                 albumsList = AT.GetData().Where(Q => true);
             else
                 albumsList = AT.GetData().Where(Q => Q.ReleaseYear == Int32.Parse(year));
@@ -213,7 +213,7 @@ namespace UI
         {
             dynamic row = Resutls_Table.SelectedItems[0];
 
-            baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, this, UserID, row.SongID);
+            baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, this, UserID, (int)row.SongID);
         }
     }
 }
