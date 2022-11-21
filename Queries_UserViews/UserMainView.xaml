@@ -13,7 +13,7 @@
             <Setter Property="Background" Value="Honeydew" />
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="40"/>
+                    <Setter Property="CornerRadius" Value="20"/>
                 </Style>
             </Style.Resources>
         </Style>
@@ -54,33 +54,8 @@
         <TextBlock Name="HelloText" Text="Hello, Name!" Foreground="White" FontSize="72"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-        <Border Grid.Row="3" Grid.RowSpan="5" Grid.ColumnSpan="5" Background="FloralWhite">
-            <ListBox Name="PlaylistList" FontSize="22">
-                <!--SelectionChanged="OnSelectionChange" IsSynchronizedWithCurrentItem="True">-->
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
+        <ListView Name="PlaylistList" FontSize="28" Grid.Row="3" Grid.RowSpan="5" Grid.ColumnSpan="5" Background="FloralWhite" Margin="20, 0, 0, 15"/>
 
-                                <!--<TextBlock Text="{Binding Path=Name}" Grid.Row="0" Grid.Column="0" FontSize="16"/>
-                                <TextBlock Text="{Binding Path=Price}" Grid.Row="0" Grid.Column="1" TextAlignment="Right" FontSize="16"/>
-                                <Border Loaded="OrderItemDescription" Grid.Row="1"/>
-                                <Button Click="OnDeleteItemClick" Grid.Row="2" Grid.Column="1">
-                                    Remove
-                                </Button>-->
-                            </Grid>
-                            <!--<TextBlock Text="{Binding Path=Flavor}"/>-->
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
 
         <Button Name="CreatePlaylistButton" Click="CreatePlaylistButton_Click" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2" Margin="20, 10, 20, 10">
             CREATE
@@ -90,11 +65,11 @@
             VIEW
         </Button>
 
-        <Button Name="SearchButton" Click="SearchButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Margin="20, 10, 20, 10">
+        <Button Name="SearchButton" Click="SearchButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Margin="20, 5, 20, 15">
             EXPLORE
         </Button>
 
-        <Button Name="LogoutButton" Click="LogoutButton_Click" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Margin="20, 10, 20, 10">
+        <Button Name="LogoutButton" Click="LogoutButton_Click" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Margin="20, 5, 20, 15">
             LOG OUT
         </Button>
 
