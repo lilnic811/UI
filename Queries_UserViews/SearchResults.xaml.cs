@@ -213,7 +213,7 @@ namespace UI
         {
             dynamic row = Resutls_Table.SelectedItems[0];
 
-            baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, this, UserID, row.SongID);
+            baseWindow.OverrideBorder.Child = new UserEditSong(baseWindow, this, UserID, (int)row.SongID);
         }
     }
 }
