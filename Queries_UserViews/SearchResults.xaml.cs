@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.musicDataSetTableAdapters;
 using UI.Queries_UserViews;
+using UI.Tables;
 
 namespace UI
 {
@@ -137,15 +138,69 @@ namespace UI
                 select new
                 {
                     SongName = q.SongName,
-                    SongID = (int)q.SongID,
                     Rating = q.Rating,
                     AlbumName = q.AlbumName,
                     ReleaseYear = q.ReleaseYear,
                     GenreName = q.GenreName,
-                    MusicianName = m.MusicianName
+                    MusicianName = m.MusicianName,
+                    SongID = (int)q.SongID
                 };
 
             Resutls_Table.ItemsSource = temp4;
+        }
+
+        public SearchResults(UserMainView main, int userID, int playlistID)
+        {
+            baseWindow = main;
+            UserID = userID;
+
+            InitializeComponent();
+
+            PlaylistSongsTableAdapter PST = new PlaylistSongsTableAdapter();
+            var playlistSongs = PST.GetData().Where(Q => Q.PlaylistID == playlistID);
+            SongsTableAdapter ST = new SongsTableAdapter();
+            var songs = ST.GetData();
+
+            var temp1 =
+                from p in playlistSongs
+                from s in songs
+                where p.SongID == s.SongID
+                select new
+                {
+                    s.SongName,
+                    s.SongID,
+                    s.AlbumID
+                };
+
+            AlbumsTableAdapter AT = new AlbumsTableAdapter();
+            var albumSongs = AT.GetData();
+            var temp2 =
+                from q in temp1
+                from a in albumSongs
+                where q.AlbumID == a.AlbumID
+                select new
+                {
+                    q.SongName,
+                    q.SongID,
+                    a.AlbumName,
+                    a.MusicianID
+                };
+
+            MusiciansTableAdapter MT = new MusiciansTableAdapter();
+            var Artists = MT.GetData();
+            var temp3 =
+                from q in temp2
+                from a in Artists
+                where q.MusicianID == a.MusicianID
+                select new
+                {
+                    q.SongName,
+                    q.AlbumName,
+                    a.MusicianName,
+                    q.SongID
+                };
+
+            Resutls_Table.ItemsSource = temp3;
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)

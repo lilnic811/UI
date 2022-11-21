@@ -58,8 +58,13 @@ namespace UI.Queries_UserViews
 
         private void ViewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+            dynamic row = PlaylistList.SelectedItems[0];
+
+            PlaylistsTableAdapter PT = new PlaylistsTableAdapter();
+            var playlist = PT.GetData().Where(Q => Q.UserID == UserID && Q.PlaylistName == row).Min();
+
+
+            OverrideBorder.Child = new SearchResults(this, UserID, (int)playlist.PlaylistID);
         }
 
         private void CreatePlaylistButton_Click(object sender, RoutedEventArgs e)
