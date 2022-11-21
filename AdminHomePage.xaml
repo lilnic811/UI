@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="20"/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition MaxHeight="20"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -27,12 +27,12 @@
 
         <TextBlock Name="HelloText" Text="Hello, Name!" Foreground="White" FontSize="60"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-        <Button Name="Add_Artist_Button" Content="Add Artist" FontSize="40" Grid.Row="3" Grid.Column="2" Margin="10" Click="Add_Artist_Button_Click"/>
-        <Button Name="Add_Album_Button" Content="Add Album" FontSize="40" Grid.Row="3" Grid.Column="1" Margin="10" Click="Add_Album_Button_Click"/>
-        <Button Name="Add_Genre_Button" Content="Add Genre" FontSize="40" Grid.Row="4" Grid.Column="1" Margin="10" Click="Add_Genre_Button_Click"/>
-        <Button Name="Add_Song_Button" Content="Add Song" FontSize="40" Grid.Row="3" Grid.Column="3" Margin="10" Click="Add_Song_Button_Click"/>
-        <Button Name="Add_Provider_Button" Content="Add Provider" FontSize="40" Grid.Row="4" Grid.Column="2" Margin="10" Click="Add_Provider_Button_Click"/>
-        <Button Name="Logout_Button" Content="Logout" FontSize="40" Grid.Row="5" Grid.Column="3" Margin="10" Click="Logout_Button_Click"/>
+        <Button Name="Add_Artist_Button" Content="Add Artist" FontSize="36" Grid.Row="3" Grid.Column="2" Margin="10" Click="Add_Artist_Button_Click"/>
+        <Button Name="Add_Album_Button" Content="Add Album" FontSize="36" Grid.Row="3" Grid.Column="1" Margin="10" Click="Add_Album_Button_Click"/>
+        <Button Name="Add_Genre_Button" Content="Add Genre" FontSize="36" Grid.Row="4" Grid.Column="1" Margin="10" Click="Add_Genre_Button_Click"/>
+        <Button Name="Add_Song_Button" Content="Add Song" FontSize="36" Grid.Row="3" Grid.Column="3" Margin="10" Click="Add_Song_Button_Click"/>
+        <Button Name="Add_Provider_Button" Content="Add Provider" FontSize="36" Grid.Row="4" Grid.Column="2" Margin="10" Click="Add_Provider_Button_Click"/>
+        <Button Name="Logout_Button" Content="LOGOUT" FontSize="36" Grid.Row="5" Grid.Column="3" Margin="10" Click="Logout_Button_Click"/>
 
         <Border Name="OverrideBorder" Grid.Column="0" Grid.Row="0" Grid.RowSpan="7" Grid.ColumnSpan="5"/>
     </Grid>
