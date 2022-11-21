@@ -24,5 +24,10 @@ namespace UI.Queries_UserViews
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

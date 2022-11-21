@@ -102,6 +102,9 @@
     <Compile Include="Queries_UserViews\UserMainView.xaml.cs">
       <DependentUpon>UserMainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Queries_UserViews\UserSpecs.xaml.cs">
+      <DependentUpon>UserSpecs.xaml</DependentUpon>
+    </Compile>
     <Page Include="Queries_UserViews\LoginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminHomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Queries_UserViews\UserSpecs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
