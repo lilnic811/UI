@@ -69,7 +69,7 @@ namespace UI.Queries_UserViews
                             MusicianName = rdr["MusicianName"]
                         };
 
-                        TopChart.Items.Add(song);
+                        TopChart.Items.Add(song.SongName + " - " + song.MusicianName);
                     }
 
 
@@ -93,7 +93,7 @@ namespace UI.Queries_UserViews
                             MusicianName = rdr2["MusicianName"]
                         };
 
-                        playlistChart.Items.Add(song);
+                        playlistChart.Items.Add(song.SongName + " - " + song.MusicianName);
                     }
 
                 }
