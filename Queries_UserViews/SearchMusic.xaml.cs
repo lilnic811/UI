@@ -60,7 +60,7 @@ namespace UI
 
         private void TopChartsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            baseWindow.OverrideBorder.Child = new TopCharts(baseWindow, UserID);
         }
     }
 }
