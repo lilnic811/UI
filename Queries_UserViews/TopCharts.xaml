@@ -55,7 +55,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Name="ChartTitle" Text="Today's Top 50" Foreground="White" FontSize="46"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="ChartTitle" Text="Today's Top Hits" Foreground="White" FontSize="46"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="9" HorizontalAlignment="Center" />
         <TextBlock Name="rateTitle" Text="Top Ratings" Foreground="White" FontSize="36"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Name="listensTitle" Text="Most Listens" Foreground="White" FontSize="36"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
