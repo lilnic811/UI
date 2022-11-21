@@ -51,7 +51,7 @@ namespace UI
 
             MusiciansTableAdapter MT = new MusiciansTableAdapter();
             EnumerableRowCollection<musicDataSet.MusiciansRow> musicianList;
-            if (!musician.Equals(""))
+            if (musician.Equals(""))
                 musicianList = MT.GetData().Where(Q => true);
             else
                 musicianList = MT.GetData().Where(Q => Q.MusicianName.Contains(musician));
