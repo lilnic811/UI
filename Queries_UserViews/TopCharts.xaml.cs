@@ -39,11 +39,42 @@ namespace UI.Queries_UserViews
             getTop50.CommandType = CommandType.StoredProcedure;
             SongsTableAdapter ST = new SongsTableAdapter();
             EnumerableRowCollection<musicDataSet.SongsRow> topSongs;
+
             //topSongs = getTop50;
             //foreach (var item in topSongs)
             //{
             //    TopChart.Items.Add(item);
             //}
+
+            using (SqlConnection conn = new SqlConnection("Data Source=cis560-team3.database.windows.net;Initial Catalog=music;Persist Security Info=True;User ID=admin1;Password=Singtome!"))
+            {
+                conn.Open();
+                musicDataSet.
+                // 1.  create a command object identifying the stored procedure
+                SqlCommand cmd = new SqlCommand("topCharts_proc", conn);
+
+                // 2. set the command object so it knows to execute a stored procedure
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                // execute the command
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    // iterate through results, printing each to console
+                    while (rdr.Read())
+                    {
+                        var song = new
+                        {
+                            SongName = rdr["SongName"],
+                            MusicianName = rdr["MusicianName"]
+                        };
+
+                        TopChart.Items.Add(song);
+                    }
+
+
+                }
+            }
 
         }
 
