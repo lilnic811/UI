@@ -47,24 +47,23 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition MaxHeight="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Name="ChartTitle" Text="Today's Top 50" Foreground="White" FontSize="46"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Name="rateTitle" Text="Top Ratings" Foreground="White" FontSize="36"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Name="listensTitle" Text="Most Listens" Foreground="White" FontSize="36"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="rateTitle" Text="Your top Genres" Foreground="White" FontSize="36"  Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="avgRatingsTitle" Text="Other users would" Foreground="White" FontSize="36"  Grid.Row="1"  Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="avgRatingsTitle2" Text="rate your playlists" Foreground="White" FontSize="36"  Grid.Row="2"  Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="avgRatingsTitle3" Text="an average of" Foreground="White" FontSize="36"  Grid.Row="3"  Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="avgRating"  Foreground="White" FontSize="36"  Grid.Row="4" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <ListBox Name="GenreBreakdown"  Grid.Row="3" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="3" Background="GhostWhite" Foreground="Black" FontSize="18"/>
+        <ListBox Name="GenreBreakdown"  Grid.Row="2" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="3" Background="GhostWhite" Foreground="Black" FontSize="18"/>
 
         <TextBox />
         <TextBlock Name="playlistChart" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="3" Foreground="Black" FontSize="16"/>
 
 
-        <Button Name="BackButton" Click="BackButton_Click" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2" Margin="40, 10, 0, 10">
+        <Button Name="BackButton" Click="BackButton_Click" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="6" Grid.RowSpan="2" Margin="40, 10, 0, 15">
             BACK
         </Button>
 
