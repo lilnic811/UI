@@ -58,7 +58,7 @@ namespace UI
 
             AlbumsTableAdapter AT = new AlbumsTableAdapter();
             EnumerableRowCollection<musicDataSet.AlbumsRow> albumsList;
-            if (song.Equals(""))
+            if (year.Equals(""))
                 albumsList = AT.GetData().Where(Q => true);
             else
                 albumsList = AT.GetData().Where(Q => Q.ReleaseYear == Int32.Parse(year));
