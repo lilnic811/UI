@@ -68,7 +68,8 @@ namespace UI
             if (rating.Equals("Any"))
                 ratingsList = RT.GetData().Where(Q => true);
             else
-                ratingsList = RT.GetData().Where(Q => Q.Rating == Int32.Parse(rating) && Q.UserID == UserID);
+                //ratingsList = RT.GetData().Where(Q => Q.Rating == Int32.Parse(rating) && Q.UserID == UserID);
+                ratingsList = RT.GetData().Where(Q => Q.Rating == Int32.Parse(rating));
 
 
             //var asdfs =

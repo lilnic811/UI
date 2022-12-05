@@ -3412,11 +3412,11 @@ namespace UI {
             private global::System.Data.DataColumn columnSongID;
             
             private global::System.Data.DataColumn columnRating;
-            
+
             private global::System.Data.DataColumn columnDateAdded;
-            
+
             private global::System.Data.DataColumn columnDateDeleted;
-            
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public UserRatingsDataTable() {
@@ -3481,23 +3481,27 @@ namespace UI {
                     return this.columnRating;
                 }
             }
-            
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DateAddedColumn {
-                get {
+            public global::System.Data.DataColumn DateAddedColumn
+            {
+                get
+                {
                     return this.columnDateAdded;
                 }
             }
-            
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DateDeletedColumn {
-                get {
+            public global::System.Data.DataColumn DateDeletedColumn
+            {
+                get
+                {
                     return this.columnDateDeleted;
                 }
             }
-            
+
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]

@@ -4,7 +4,7 @@ Author: Amy Neeland, Lili Chen
 Script Date: 11/8/2022
 Description: This script drops and creates tables based on logical database model
 */
-
+USE music;
 
 --Drop tables in reverse order to remove foreign key references first
 DROP TABLE IF EXISTS dbo.SongFeaturedArtists

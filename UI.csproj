@@ -105,14 +105,6 @@
     <Compile Include="Queries_UserViews\UserSpecs.xaml.cs">
       <DependentUpon>UserSpecs.xaml</DependentUpon>
     </Compile>
-    <Page Include="Queries_UserViews\LoginScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,9 +112,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Queries_UserViews\LoginScreen.xaml.cs">
-      <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -204,6 +193,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="musicDataSet.xsc">
       <DependentUpon>musicDataSet.xsd</DependentUpon>
     </None>

@@ -19,3 +19,6 @@ WHERE U.UserID = @userID
 GROUP BY U.UserID
 
 END;
+
+
+--EXEC avgUserPlaylistRating_proc @userID = 101
